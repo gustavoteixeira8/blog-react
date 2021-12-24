@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     background-color: ${primaryDarkColor};
   }
 
@@ -34,7 +34,8 @@ export const GlobalStyles = createGlobalStyle`
   body .Toastify .Toastify__toast-container .Toastify__toast {
     background-color: ${primaryDarkColor};
     color: white;
-    
+    font-size: 12px;
+
     svg {
       color: white;
     }

@@ -4,9 +4,9 @@ import { persistReducer } from 'redux-persist';
 export const rootPersist = (reducers) => {
   const persistedReducers = persistReducer(
     {
-      key: 'REACT-BASE',
+      key: 'blog',
       storage,
-      whitelist: ['exampleReducer'],
+      whitelist: ['auth'],
     },
     reducers,
   );

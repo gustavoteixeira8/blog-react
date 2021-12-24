@@ -1,1 +1,4 @@
-export const BUTTON_CLICK = 'BUTTON_CLICK';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const PERSIST_REHYDRATE = 'persist/REHYDRATE';

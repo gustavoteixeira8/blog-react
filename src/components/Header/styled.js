@@ -7,6 +7,8 @@ export const Nav = styled.nav`
   padding: 20px;
   display: flex;
   align-items: center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   h1 {
     margin-right: auto;

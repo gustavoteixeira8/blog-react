@@ -1,3 +1,3 @@
 export const appConfig = {
-  apiUrl: 'api.gustavo.gq',
+  apiUrl: 'https://api.gustavo.gq',
 };
