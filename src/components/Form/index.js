@@ -46,4 +46,16 @@ export const Form = styled.form`
   .divisor {
     margin: 0 8px;
   }
+
+  p {
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  a:hover,
+  p:hover {
+    border-bottom: 1px solid black;
+  }
 `;
