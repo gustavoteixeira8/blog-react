@@ -17,6 +17,10 @@ export const Header = () => {
 
         {isLoggedIn ? (
           <>
+            <Link to="/user/me" title="Articles">
+              My account
+            </Link>
+
             <Link to="/register" title="Register an user">
               Register an user
             </Link>
