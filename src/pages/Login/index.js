@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { get } from 'lodash';
-import { Title, Form } from './styled';
+import { Title } from './styled';
+import { Form } from '../../components/Form';
 import * as actions from '../../store/modules/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../styles/globalStyles';
@@ -8,6 +9,7 @@ import { Button } from '../../components/Button';
 import { toast } from 'react-toastify';
 import { randomId } from '../../utils/randomId';
 import { Loading } from '../../components/Loading';
+import { Link } from 'react-router-dom';
 
 export const Login = (props) => {
   const [login, setLogin] = useState('');
@@ -54,6 +56,15 @@ export const Login = (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <small>
+              <Link to="/password/forgot" title="Forgot password">
+                Forgot password
+              </Link>
+              <span className="divisor">|</span>
+              <Link to="/email/verify" title="Verify email">
+                Verify email
+              </Link>
+            </small>
           </label>
 
           <Button type="submit">LOGIN</Button>

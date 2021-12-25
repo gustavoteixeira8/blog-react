@@ -15,11 +15,11 @@ const loginRequest = function* ({ payload }) {
 
     yield put(actions.createLoginSuccess({ ...response.data.body }));
 
-    toast.success('You have logged in', { toastId: Math.random() });
+    toast.success('You have logged in');
 
     browserHistory.push(payload.prevPath);
   } catch (error) {
-    error.response.data.body.errors.map((e) => toast.error(e, { toastId: Math.random() }));
+    error.response.data.body.errors.map((e, index) => toast.error(e, { toastId: index }));
 
     yield put(actions.createLoginError());
   }
@@ -28,7 +28,7 @@ const loginRequest = function* ({ payload }) {
 const persistAccessToken = ({ payload }) => {
   const accessToken = get(payload, 'accessToken', '');
   if (!accessToken) return;
-  axios.defaults.headers.get['authorization'] = `Bearer ${accessToken}`;
+  axios.defaults.headers['authorization'] = `Bearer ${accessToken}`;
 };
 
 export const authSaga = all([

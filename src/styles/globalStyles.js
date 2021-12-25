@@ -34,7 +34,8 @@ export const GlobalStyles = createGlobalStyle`
   body .Toastify .Toastify__toast-container .Toastify__toast {
     background-color: ${primaryDarkColor};
     color: white;
-    font-size: 12px;
+    font-size: 15px;
+    padding: 20px;
 
     svg {
       color: white;
