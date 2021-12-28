@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { get } from 'lodash';
 import { Title } from './styled';
 import { Form } from '../../components/Form';
-import * as actions from '../../store/modules/auth/actions';
+import * as authActions from '../../store/modules/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../styles/globalStyles';
 import { Button } from '../../components/Button';
 import { toast } from 'react-toastify';
-import { randomId } from '../../utils/randomId';
 import { Loading } from '../../components/Loading';
 import { Link } from 'react-router-dom';
 
@@ -22,11 +21,11 @@ export const Login = (props) => {
     e.preventDefault();
 
     if (!login || !password) {
-      toast.error('Login and password must be provided', { toastId: randomId() });
+      toast.error('Login and password must be provided');
       return;
     }
 
-    dispatch(actions.createLoginRequest({ login, password, prevPath, isLoading: true }));
+    dispatch(authActions.createLoginRequest({ login, password, prevPath, isLoading: true }));
   };
 
   return (
