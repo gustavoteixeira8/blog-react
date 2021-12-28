@@ -2,17 +2,20 @@ import styled from 'styled-components';
 import { primaryColor } from '../../config/colors';
 
 export const Button = styled.button`
-  background-color: ${primaryColor};
+  background-color: transparent;
   border: 0;
   padding: 10px 20px;
   border-radius: 3px;
-  color: white;
+  color: ${primaryColor};
+  border: 2px solid ${primaryColor};
   cursor: pointer;
-  transition: 300ms all;
+  transition: 500ms all;
   font-weight: bold;
   font-size: 17px;
 
-  :active {
-    transform: scale(1.05, 1.05);
+  :hover {
+    background-color: ${primaryColor};
+    color: white;
+    /* transform: scale(1.05, 1.05); */
   }
 `;
