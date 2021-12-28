@@ -10,6 +10,7 @@ import { validatePassword } from '../../validations';
 import { browserHistory } from '../../services/browserHistory';
 import { useDispatch } from 'react-redux';
 import * as authAction from '../../store/modules/auth/actions';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 export const UpdatePassword = () => {
   const [email, setEmail] = useState('');
@@ -114,7 +115,9 @@ export const UpdatePassword = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <small>
-                <p onClick={() => setIsSuccess(true)}>Back to update password</p>
+                <p onClick={() => setIsSuccess(true)}>
+                  <FaArrowRight fontSize={17} />
+                </p>
               </small>
             </label>
 
@@ -155,7 +158,9 @@ export const UpdatePassword = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <small>
-                <p onClick={() => setIsSuccess(false)}>Back to email</p>
+                <p onClick={() => setIsSuccess(false)}>
+                  <FaArrowLeft fontSize={17} />
+                </p>
               </small>
             </label>
 

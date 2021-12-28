@@ -7,6 +7,7 @@ import { Title } from './styled';
 import { browserHistory } from '../../services/browserHistory';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 export const EmailVerification = () => {
   const [email, setEmail] = useState('');
@@ -84,7 +85,9 @@ export const EmailVerification = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <small>
-                <p onClick={() => setIsSuccess(true)}>Back to token</p>
+                <p onClick={() => setIsSuccess(true)}>
+                  <FaArrowRight fontSize={17} />
+                </p>
               </small>
             </label>
 
@@ -103,7 +106,9 @@ export const EmailVerification = () => {
                 onChange={(e) => setToken(e.target.value)}
               />
               <small>
-                <p onClick={() => setIsSuccess(false)}>Back to email</p>
+                <p onClick={() => setIsSuccess(false)}>
+                  <FaArrowLeft fontSize={17} />
+                </p>
               </small>
             </label>
 
