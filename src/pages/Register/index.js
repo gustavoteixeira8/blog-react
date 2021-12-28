@@ -4,10 +4,15 @@ import axios from '../../services/axios';
 import { Title } from './styled';
 import { Form } from '../../components/Form';
 import { Container } from '../../styles/globalStyles';
-import { User } from '../../models/User';
 import { Button } from '../../components/Button';
 import { Loading } from '../../components/Loading';
 import { Link } from 'react-router-dom';
+import {
+  validateEmail,
+  validateFullName,
+  validatePassword,
+  validateUsername,
+} from '../../validations/index';
 
 export const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -20,14 +25,21 @@ export const Register = () => {
     try {
       e.preventDefault();
       setIsLoading(true);
-      const userOrError = User.create({ fullName, email, password, username });
+      const user = { fullName, email, username, password };
+      const validators = [
+        validateFullName(fullName),
+        validateEmail(email),
+        validateUsername(username),
+        validatePassword(password),
+      ];
+      const isValidUser = validators.map((validator) => validator.isValid).includes(true);
 
-      if (Array.isArray(userOrError)) {
-        userOrError.map((error) => toast.error(error, { toastId: Math.random() }));
+      if (!isValidUser) {
+        validators.map(({ message }) => toast.error(message, { toastId: Math.random() }));
         return;
       }
 
-      const { data } = await axios.post('/user', userOrError);
+      const { data } = await axios.post('/user', user);
 
       toast.success(data.body.message);
       setFullName('');

@@ -67,10 +67,8 @@ export const UpdatePassword = () => {
 
     const isValidPassword = validatePassword(password);
 
-    if (!isValidPassword) {
-      toast.error(
-        'Password must have at least 8 characters between uppercase, lowercase, symbols and numbers',
-      );
+    if (!isValidPassword.isValid) {
+      toast.error(isValidPassword.message);
       return;
     }
 
