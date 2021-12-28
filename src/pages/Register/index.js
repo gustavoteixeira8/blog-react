@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
-import { browserHistory } from '../../services/browserHistory';
 import { Title } from './styled';
 import { Form } from '../../components/Form';
 import { Container } from '../../styles/globalStyles';
 import { User } from '../../models/User';
 import { Button } from '../../components/Button';
-import { randomId } from '../../utils/randomId';
 import { Loading } from '../../components/Loading';
+import { Link } from 'react-router-dom';
 
 export const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -24,24 +23,27 @@ export const Register = () => {
       const userOrError = User.create({ fullName, email, password, username });
 
       if (Array.isArray(userOrError)) {
-        userOrError.map((error) => toast.error(error, { toastId: randomId() }));
+        userOrError.map((error) => toast.error(error, { toastId: Math.random() }));
         return;
       }
 
       const { data } = await axios.post('/user', userOrError);
 
-      browserHistory.push('/');
-      toast.success(data.body.message, { toastId: randomId() });
+      toast.success(data.body.message);
+      setFullName('');
+      setEmail('');
+      setUsername('');
+      setPassword('');
     } catch (error) {
       const errors = error.response.data.body.errors;
       const statusCode = error.response.status;
 
       if (statusCode >= 400 && statusCode <= 499) {
-        errors.map((error) => toast.error(error, { toastId: randomId() }));
+        errors.map((error) => toast.error(error, { toastId: Math.random() }));
         return;
       }
 
-      toast.error('Internal error, try again later', { toastId: randomId() });
+      toast.error('Internal error, try again later');
     } finally {
       setIsLoading(false);
     }
@@ -97,6 +99,15 @@ export const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <small>
+              <Link to="/password/forgot" title="Forgot password">
+                Forgot password
+              </Link>
+              <span className="divisor">|</span>
+              <Link to="/email/verify" title="Verify email">
+                Verify email
+              </Link>
+            </small>
           </label>
 
           <Button type="submit">Register an account</Button>
