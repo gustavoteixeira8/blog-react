@@ -21,6 +21,41 @@ export const Header = () => {
     dispatch(authActions.createLogoutRequest());
   };
 
+  const loggedInLinks = (
+    <>
+      <Link to="/account" title="Articles">
+        My account
+      </Link>
+
+      <Link to="/register" title="Register an user">
+        Register an user
+      </Link>
+
+      <Link to="/article" title="Articles">
+        Articles
+      </Link>
+
+      <Link to="/category" title="Categories">
+        Categories
+      </Link>
+
+      <Link to="/" title="Logout" onClick={handleLogoutClick}>
+        Logout
+      </Link>
+    </>
+  );
+
+  const notLoggedInLinks = (
+    <>
+      <Link to="/about" title="About me">
+        About me
+      </Link>
+      <Link to="/login" title="Login">
+        Login
+      </Link>
+    </>
+  );
+
   return (
     <>
       <Nav>
@@ -31,38 +66,7 @@ export const Header = () => {
             Home
           </Link>
 
-          {isLoggedIn ? (
-            <>
-              <Link to="/account" title="Articles">
-                My account
-              </Link>
-
-              <Link to="/register" title="Register an user">
-                Register an user
-              </Link>
-
-              <Link to="/article" title="Articles">
-                Articles
-              </Link>
-
-              <Link to="/category" title="Categories">
-                Categories
-              </Link>
-
-              <Link to="/" title="Logout" onClick={handleLogoutClick}>
-                Logout
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/about" title="About me">
-                About me
-              </Link>
-              <Link to="/login" title="Login">
-                Login
-              </Link>
-            </>
-          )}
+          {isLoggedIn ? loggedInLinks : notLoggedInLinks}
         </div>
 
         <div className="mobile-menu">
@@ -73,37 +77,7 @@ export const Header = () => {
               Home
             </Link>
 
-            {isLoggedIn ? (
-              <>
-                <Link to="/account" title="Articles">
-                  My account
-                </Link>
-
-                <Link to="/register" title="Register an user">
-                  Register an user
-                </Link>
-
-                <Link to="/article" title="Articles">
-                  Articles
-                </Link>
-
-                <Link to="/category" title="Categories">
-                  Categories
-                </Link>
-                <Link to="/" title="Logout" onClick={handleLogoutClick}>
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/about" title="About me">
-                  About me
-                </Link>
-                <Link to="/login" title="Login">
-                  Login
-                </Link>
-              </>
-            )}
+            {isLoggedIn ? loggedInLinks : notLoggedInLinks}
           </div>
         </div>
       </Nav>
