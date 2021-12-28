@@ -1,6 +1,6 @@
 import * as types from '../types';
 
-const initialAuthState = {
+export const initialAuthState = {
   isLoggedIn: false,
   isLoading: false,
   data: {
@@ -26,7 +26,7 @@ export const authReducer = (state = initialAuthState, action) => {
       return newState;
     }
     case types.LOGIN_ERROR: {
-      const newState = { ...initialAuthState, isLoading: false };
+      const newState = { ...initialAuthState };
       return newState;
     }
     default: {
