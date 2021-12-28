@@ -7,6 +7,7 @@ import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { EmailVerification } from '../pages/EmailVerification';
 import { UpdatePassword } from '../pages/UpdatePassword';
+import { UserLoggedInAccount } from '../pages/UserLoggedInAccount';
 
 export const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
       <MyRoute exact path="/register" component={Register} onlyLoggedIn={true} />
       <MyRoute exact path="/email/verify" component={EmailVerification} />
       <MyRoute exact path="/password/forgot" component={UpdatePassword} />
+      <MyRoute exact path="/account" component={UserLoggedInAccount} onlyLoggedIn={true} />
       <MyRoute path="*" component={NotFound} />
     </Switch>
   );
