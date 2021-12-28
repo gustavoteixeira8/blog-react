@@ -8,6 +8,8 @@ import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 import { validatePassword } from '../../validations';
 import { browserHistory } from '../../services/browserHistory';
+import { useDispatch } from 'react-redux';
+import * as authAction from '../../store/modules/auth/actions';
 
 export const UpdatePassword = () => {
   const [email, setEmail] = useState('');
@@ -16,6 +18,7 @@ export const UpdatePassword = () => {
   const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
@@ -76,11 +79,12 @@ export const UpdatePassword = () => {
 
       toast.success('Password updated successfully');
 
+      dispatch(authAction.createLogoutRequest());
+
       browserHistory.push('/');
     } catch (error) {
       const errors = error.response.data.body.errors;
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
-    } finally {
       setIsLoading(false);
       setPassword('');
       setConfirmPassword('');

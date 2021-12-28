@@ -57,7 +57,6 @@ export const EmailVerification = () => {
     } catch (error) {
       const errors = error.response.data.body.errors;
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
-    } finally {
       setIsLoading(false);
       setToken('');
     }
