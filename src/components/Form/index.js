@@ -47,15 +47,15 @@ export const Form = styled.form`
     margin: 0 8px;
   }
 
-  p {
+  small p {
     color: black;
     font-size: 14px;
     cursor: pointer;
     display: inline-block;
   }
 
-  a:hover,
-  p:hover {
+  small a:hover,
+  small p:hover {
     border-bottom: 1px solid black;
   }
 `;
