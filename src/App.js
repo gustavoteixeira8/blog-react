@@ -24,6 +24,11 @@ const App = function () {
             className="toast-container"
             pauseOnFocusLoss={true}
             theme="dark"
+            toastClassName={Math.random()}
+            closeOnClick
+            limit={6}
+            closeButton
+            draggable
           />
         </Router>
       </PersistGate>
