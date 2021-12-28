@@ -8,7 +8,6 @@ import axios from '../../../services/axios';
 import { browserHistory } from '../../../services/browserHistory';
 
 const loginRequest = function* ({ payload }) {
-  console.log(axios.defaults);
   try {
     const response = yield call(axios.post, '/auth', {
       login: payload.login,
