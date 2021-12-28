@@ -71,6 +71,7 @@ export const UpdatePassword = () => {
       toast.error(
         'Password must have at least 8 characters between uppercase, lowercase, symbols and numbers',
       );
+      return;
     }
 
     try {
