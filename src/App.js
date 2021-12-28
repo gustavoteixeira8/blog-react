@@ -4,6 +4,7 @@ import { Router } from 'react-router-dom';
 import { GlobalStyles } from './styles/globalStyles';
 import { Header } from './components/Header';
 import { AppRoutes } from './routes';
+import { GlobalEvents } from './components/GlobalEvents';
 import { browserHistory } from './services/browserHistory';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store';
@@ -14,6 +15,7 @@ const App = function () {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Router history={browserHistory} location={browserHistory.location}>
+          <GlobalEvents />
           <Header />
           <GlobalStyles />
           <AppRoutes />
