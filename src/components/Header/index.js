@@ -1,48 +1,111 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav } from './styled';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaBars } from 'react-icons/fa';
+import * as authActions from '../../store/modules/auth/actions';
 
 export const Header = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(true);
+
+  const handleMenuMobileClick = () => {
+    setIsOpenMobileMenu(!isOpenMobileMenu);
+
+    const mobileMenuBox = document.querySelector('.mobile-menu-box');
+    mobileMenuBox.style.top = isOpenMobileMenu ? '60px' : '-100%';
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(authActions.createLogoutRequest());
+  };
 
   return (
     <>
       <Nav>
         <h1>Blog</h1>
 
-        <Link to="/" title="Home">
-          Home
-        </Link>
+        <div className="desktop-menu">
+          <Link to="/" title="Home">
+            Home
+          </Link>
 
-        {isLoggedIn ? (
-          <>
-            <Link to="/user/me" title="Articles">
-              My account
+          {isLoggedIn ? (
+            <>
+              <Link to="/account" title="Articles">
+                My account
+              </Link>
+
+              <Link to="/register" title="Register an user">
+                Register an user
+              </Link>
+
+              <Link to="/article" title="Articles">
+                Articles
+              </Link>
+
+              <Link to="/category" title="Categories">
+                Categories
+              </Link>
+
+              <Link to="/" title="Logout" onClick={handleLogoutClick}>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/about" title="About me">
+                About me
+              </Link>
+              <Link to="/login" title="Login">
+                Login
+              </Link>
+            </>
+          )}
+        </div>
+
+        <div className="mobile-menu">
+          <FaBars className="menu-bars" onClick={handleMenuMobileClick} />
+
+          <div className="mobile-menu-box">
+            <Link to="/" title="Home">
+              Home
             </Link>
 
-            <Link to="/register" title="Register an user">
-              Register an user
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <Link to="/account" title="Articles">
+                  My account
+                </Link>
 
-            <Link to="/article" title="Articles">
-              Articles
-            </Link>
+                <Link to="/register" title="Register an user">
+                  Register an user
+                </Link>
 
-            <Link to="/category" title="Categories">
-              Categories
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link to="/about" title="About me">
-              About me
-            </Link>
-            <Link to="/login" title="Login">
-              Login
-            </Link>
-          </>
-        )}
+                <Link to="/article" title="Articles">
+                  Articles
+                </Link>
+
+                <Link to="/category" title="Categories">
+                  Categories
+                </Link>
+                <Link to="/" title="Logout" onClick={handleLogoutClick}>
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/about" title="About me">
+                  About me
+                </Link>
+                <Link to="/login" title="Login">
+                  Login
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
       </Nav>
     </>
   );
