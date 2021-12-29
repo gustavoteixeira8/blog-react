@@ -16,20 +16,18 @@ const loginRequest = function* ({ payload }) {
 
     axios.defaults.headers.common['authorization'] = `Bearer ${response.data.body.accessToken}`;
 
-    const userResponse = yield call(axios.get, '/user/me');
-
-    const userData = { data: userResponse.data.body.user };
-
-    yield put(userActions.createFetchUserLoggedInSuccess(userData));
+    yield put(userActions.createFetchUserLoggedInRequest());
     yield put(authActions.createLoginSuccess({ ...response.data.body }));
 
     toast.success('You have logged in');
 
     browserHistory.push(payload.prevPath);
   } catch (error) {
-    const status = get(error, 'response.status', 500);
+    const status = get(error, 'response.data.status', 500);
+    const errors = get(error, 'response.data.body.errors', []);
+
     if (status === 401 || status === 400) {
-      error.response.data.body.errors.map((e, index) => toast.error(e, { toastId: index }));
+      errors.map((e, index) => toast.error(e, { toastId: index }));
     } else {
       toast.error('Internal error, try again later');
     }
