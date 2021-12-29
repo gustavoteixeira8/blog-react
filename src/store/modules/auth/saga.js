@@ -19,7 +19,9 @@ const loginRequest = function* ({ payload }) {
     yield put(userActions.createFetchUserLoggedInRequest());
     yield put(authActions.createLoginSuccess({ ...response.data.body }));
 
-    toast.success('You have logged in');
+    const message = get(response, 'data.body.message', 'You have logged in');
+
+    toast.success(message);
 
     browserHistory.push(payload.prevPath);
   } catch (error) {
