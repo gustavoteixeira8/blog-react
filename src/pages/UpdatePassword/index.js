@@ -8,11 +8,12 @@ import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 import { validatePassword } from '../../validations';
 import { browserHistory } from '../../services/browserHistory';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as authAction from '../../store/modules/auth/actions';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 export const UpdatePassword = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -96,10 +97,7 @@ export const UpdatePassword = () => {
     <>
       <Loading isLoading={isLoading} />
       <Container>
-        <Title>
-          Forgot password
-          <span className="border-title"></span>
-        </Title>
+        <Title>{isLoggedIn ? 'Update password' : 'Forgot password'}</Title>
 
         {!isSuccess ? (
           <Form onSubmit={handleSubmitEmail}>
