@@ -13,6 +13,7 @@ import {
   validatePassword,
   validateUsername,
 } from '../../validations/index';
+import { get } from 'lodash';
 
 export const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -22,35 +23,38 @@ export const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      setIsLoading(true);
-      const user = { fullName, email, username, password };
-      const validators = [
-        validateFullName(fullName),
-        validateEmail(email),
-        validateUsername(username),
-        validatePassword(password),
-      ];
-      const isValidUser = validators.map((validator) => validator.isValid).includes(true);
+    e.preventDefault();
 
-      if (!isValidUser) {
-        validators.map(({ message }) => toast.error(message, { toastId: Math.random() }));
-        return;
-      }
+    const user = { fullName, email, username, password };
+    const validators = [
+      validateFullName(fullName),
+      validateEmail(email),
+      validateUsername(username),
+      validatePassword(password),
+    ];
+    const isValidUser = validators.map((validator) => validator.isValid).includes(true);
+
+    if (!isValidUser) {
+      validators.map(({ message }) => toast.error(message, { toastId: Math.random() }));
+      return;
+    }
+
+    try {
+      setIsLoading(true);
 
       const { data } = await axios.post('/user', user);
 
       toast.success(data.body.message);
+
       setFullName('');
       setEmail('');
       setUsername('');
       setPassword('');
     } catch (error) {
-      const errors = error.response.data.body.errors;
-      const statusCode = error.response.status;
+      const errors = get(error, 'response.data.body.errors', []);
+      const status = get(error, 'response.data.body.status', 500);
 
-      if (statusCode >= 400 && statusCode <= 499) {
+      if (status >= 400 || status <= 499) {
         errors.map((error) => toast.error(error, { toastId: Math.random() }));
         return;
       }
