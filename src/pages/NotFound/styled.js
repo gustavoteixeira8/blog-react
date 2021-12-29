@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { primaryDarkColor } from '../../config/colors';
 
 export const Title = styled.h1`
-  color: ${primaryDarkColor};
+  color: black;
   font-size: 80px;
   text-align: center;
 
