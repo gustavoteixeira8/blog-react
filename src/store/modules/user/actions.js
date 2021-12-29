@@ -17,3 +17,8 @@ export const createUpdateUserLoggedInRequest = (payload) => ({
   type: types.UPDATE_USER_LOGGED_IN_REQUEST,
   payload,
 });
+
+export const createDeleteUserLoggedInRequest = (payload) => ({
+  type: types.DELETE_USER_LOGGED_IN_REQUEST,
+  payload,
+});
