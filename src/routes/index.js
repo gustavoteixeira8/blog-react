@@ -8,6 +8,8 @@ import { NotFound } from '../pages/NotFound';
 import { EmailVerification } from '../pages/EmailVerification';
 import { UpdatePassword } from '../pages/UpdatePassword';
 import { UserAccount } from '../pages/UserAccount';
+import { Dashboard } from '../pages/Dashboard';
+import { DeleteAccount } from '../pages/DeleteAccount';
 
 export const AppRoutes = () => {
   return (
@@ -18,6 +20,8 @@ export const AppRoutes = () => {
       <MyRoute exact path="/email/verify" component={EmailVerification} />
       <MyRoute exact path="/password/forgot" component={UpdatePassword} />
       <MyRoute exact path="/account" component={UserAccount} onlyLoggedIn={true} />
+      <MyRoute exact path="/account/delete" component={DeleteAccount} onlyLoggedIn={true} />
+      <MyRoute exact path="/dashboard" component={Dashboard} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute path="*" component={NotFound} />
     </Switch>
   );
