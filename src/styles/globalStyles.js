@@ -49,6 +49,7 @@ export const Container = styled.div`
   margin: 20px auto;
   padding: 30px;
   background-color: white;
+  box-shadow: 0px 0px 15px 0px #010101;
   border-radius: 7px;
   border-bottom: 5px solid ${primaryColor};
 `;
