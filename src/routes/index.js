@@ -7,17 +7,17 @@ import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { EmailVerification } from '../pages/EmailVerification';
 import { UpdatePassword } from '../pages/UpdatePassword';
-import { UserLoggedInAccount } from '../pages/UserLoggedInAccount';
+import { UserAccount } from '../pages/UserAccount';
 
 export const AppRoutes = () => {
   return (
     <Switch>
       <MyRoute exact path="/" component={Home} />
       <MyRoute exact path="/login" component={Login} onlyNotLoggedIn={true} />
-      <MyRoute exact path="/register" component={Register} onlyLoggedIn={true} />
+      <MyRoute exact path="/register" component={Register} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute exact path="/email/verify" component={EmailVerification} />
       <MyRoute exact path="/password/forgot" component={UpdatePassword} />
-      <MyRoute exact path="/account" component={UserLoggedInAccount} onlyLoggedIn={true} />
+      <MyRoute exact path="/account" component={UserAccount} onlyLoggedIn={true} />
       <MyRoute path="*" component={NotFound} />
     </Switch>
   );

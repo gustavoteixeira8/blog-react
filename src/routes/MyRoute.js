@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export const MyRoute = ({ onlyNotLoggedIn, onlyLoggedIn, onlyAdmin, component, ...rest }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const isAdmin = false;
+  const { isAdmin } = useSelector((state) => state.user.data);
 
   if (onlyNotLoggedIn && isLoggedIn) {
     return <Redirect to={{ pathname: '/' }} />;
