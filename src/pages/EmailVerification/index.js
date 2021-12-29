@@ -8,12 +8,16 @@ import { browserHistory } from '../../services/browserHistory';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import * as userActions from '../../store/modules/user/actions';
 
 export const EmailVerification = () => {
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
@@ -55,6 +59,10 @@ export const EmailVerification = () => {
       toast.success('Email verified successfully');
 
       browserHistory.push('/login');
+
+      if (isLoggedIn) {
+        dispatch(userActions.createFetchUserLoggedInRequest());
+      }
     } catch (error) {
       const errors = error.response.data.body.errors;
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
