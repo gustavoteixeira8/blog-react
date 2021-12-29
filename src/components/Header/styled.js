@@ -32,7 +32,7 @@ export const Nav = styled.nav`
   }
 
   .menu-bars {
-    font-size: 24px;
+    font-size: 30px;
     color: white;
     cursor: pointer;
   }
@@ -48,7 +48,7 @@ export const Nav = styled.nav`
     background-color: ${primaryColor};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    transition: 500ms all;
+    transition: 600ms all;
   }
 
   .mobile-menu-box a {

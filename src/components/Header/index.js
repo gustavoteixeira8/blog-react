@@ -23,20 +23,12 @@ export const Header = () => {
 
   const loggedInLinks = (
     <>
-      <Link to="/account" title="Articles">
+      <Link to="/account" title="My account">
         My account
       </Link>
 
-      <Link to="/register" title="Register an user">
-        Register an user
-      </Link>
-
-      <Link to="/article" title="Articles">
-        Articles
-      </Link>
-
-      <Link to="/category" title="Categories">
-        Categories
+      <Link to="/dashboard" title="Dashboard">
+        Dashboard
       </Link>
 
       <Link to="/" title="Logout" onClick={handleLogoutClick}>
@@ -47,8 +39,8 @@ export const Header = () => {
 
   const notLoggedInLinks = (
     <>
-      <Link to="/about" title="About me">
-        About me
+      <Link to="/about" title="About">
+        About
       </Link>
       <Link to="/login" title="Login">
         Login
