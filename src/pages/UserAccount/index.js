@@ -136,6 +136,10 @@ export const UserAccount = () => {
               <Link to="/email/verify" title="Verify email">
                 Verify email
               </Link>
+              <span className="divisor">|</span>
+              <Link to="/account/delete" title="Delete account">
+                Delete account
+              </Link>
             </small>
           </label>
 
