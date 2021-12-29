@@ -117,7 +117,7 @@ export const Register = () => {
             />
             <small>
               <Link to="/password/forgot" title="Forgot password">
-                Forgot password
+                Update password
               </Link>
               <span className="divisor">|</span>
               <Link to="/email/verify" title="Verify email">
