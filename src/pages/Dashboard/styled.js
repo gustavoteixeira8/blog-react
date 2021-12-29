@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  font-weight: bold;
-  font-size: 50px;
-  text-align: center;
-  margin-bottom: 40px;
-`;
-
 export const ContainerUtilityLinks = styled.div`
   width: 100%;
   margin: 90px auto;

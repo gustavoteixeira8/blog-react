@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { get } from 'lodash';
-import { Title } from './styled';
+import { Title } from '../../components/Title';
 import { Form } from '../../components/Form';
 import * as authActions from '../../store/modules/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';

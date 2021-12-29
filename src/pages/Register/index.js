@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
-import { Title } from './styled';
+import { Title } from '../../components/Title';
 import { Form } from '../../components/Form';
 import { Container } from '../../styles/globalStyles';
 import { Button } from '../../components/Button';

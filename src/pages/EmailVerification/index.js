@@ -3,7 +3,7 @@ import { Container } from '../../styles/globalStyles';
 import { Form } from '../../components/Form';
 import { Button } from '../../components/Button';
 import { Loading } from '../../components/Loading';
-import { Title } from './styled';
+import { Title } from '../../components/Title';
 import { browserHistory } from '../../services/browserHistory';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';

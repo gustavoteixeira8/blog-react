@@ -1,14 +1,12 @@
 import React from 'react';
 import { Container } from '../../styles/globalStyles';
+import {} from '../../components/Card';
 import { Title } from '../../components/Title';
 
-export const NotFound = () => {
+export const Categories = () => {
   return (
     <Container>
-      <Title>
-        404
-        <p>Page not found</p>
-      </Title>
+      <Title>Oi</Title>
     </Container>
   );
 };

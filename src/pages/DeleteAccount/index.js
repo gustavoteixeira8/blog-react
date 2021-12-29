@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '../../styles/globalStyles';
-import { Title } from '../Dashboard/styled';
+import { Title } from '../../components/Title';
 import { DeleteAccountBox } from './styled';
 import { Button } from '../../components/Button';
 import { useDispatch } from 'react-redux';

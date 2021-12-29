@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Card, CardsContainer, CardText, CardTitle } from '../../components/Card';
 import { Button } from '../../components/Button';
 import { Container } from '../../styles/globalStyles';
-import { ContainerUtilityLinks, Title, UtilityLinks } from './styled';
+import { ContainerUtilityLinks, UtilityLinks } from './styled';
+import { Title } from '../../components/Title';
 
 export const Dashboard = () => {
   return (

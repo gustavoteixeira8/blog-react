@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { Form } from '../../components/Form';
 import { Container } from '../../styles/globalStyles';
-import { Title } from './styled';
+import { Title } from '../../components/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loading } from '../../components/Loading';
 import { formatDate } from '../../utils/formatDate';
