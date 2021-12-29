@@ -45,7 +45,7 @@ export const GlobalStyles = createGlobalStyle`
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1280px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 30px;
   background-color: white;
