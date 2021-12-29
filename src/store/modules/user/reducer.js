@@ -2,11 +2,26 @@ import * as types from '../types';
 
 const initialUserState = {
   isLoading: false,
-  data: null,
+  data: {
+    id: '',
+    fullName: '',
+    email: '',
+    username: '',
+    isAdmin: '',
+    isEmailVerified: '',
+    createdAt: '',
+    updatedAt: '',
+  },
 };
 
 export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    case types.FETCH_USER_LOGGED_IN_REQUEST: {
+      const newState = { ...initialUserState };
+      initialUserState.isLoading = true;
+      return newState;
+    }
+
     case types.FETCH_USER_LOGGED_IN_SUCCESS: {
       const newState = { ...initialUserState };
       newState.data = action.payload.data;
@@ -15,8 +30,14 @@ export const userReducer = (state = initialUserState, action) => {
     }
 
     case types.FETCH_USER_LOGGED_IN_ERROR: {
-      const newState = { ...initialUserState };
+      const newState = { ...state };
       newState.isLoading = false;
+      return newState;
+    }
+
+    case types.UPDATE_USER_LOGGED_IN_REQUEST: {
+      const newState = { ...state };
+      initialUserState.isLoading = true;
       return newState;
     }
 
