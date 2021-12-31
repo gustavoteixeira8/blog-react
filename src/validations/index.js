@@ -56,3 +56,19 @@ export const validateUsername = (username) => {
     message: !isValid ? 'Username must be between 2 and 255 characters with no spaces' : null,
   };
 };
+
+export const validateCategoryName = (name) => {
+  if (typeof name !== 'string') {
+    name = '';
+  }
+
+  const nameTrim = name.trim();
+  const checkLength = nameTrim.length >= 3 && nameTrim.length < 255;
+  const alphanumericAndNonAlphanumeric = /^[\w\W]+$/.test(name);
+  const isValid = checkLength && alphanumericAndNonAlphanumeric;
+
+  return {
+    isValid,
+    message: !isValid ? 'Category name must be between 3 and 255 characters' : null,
+  };
+};
