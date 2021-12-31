@@ -24,7 +24,7 @@ export const DeleteAccount = () => {
             one month to recover it, just log in with the correct credentials.
           </p>
 
-          <Button onClick={handleClick} type="button">
+          <Button onClick={handleClick} type="button" big>
             DELETE MY ACCOUNT
           </Button>
         </DeleteAccountBox>
