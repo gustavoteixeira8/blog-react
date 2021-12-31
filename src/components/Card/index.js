@@ -5,6 +5,8 @@ export const CardsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 
   @media (max-width: 850px) {
     flex-direction: column;
@@ -14,7 +16,7 @@ export const CardsContainer = styled.div`
 
 export const Card = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 300px;
   padding: 15px;
   color: black;
   margin: 8px;
@@ -27,6 +29,16 @@ export const Card = styled.div`
 
   @media (max-width: 850px) {
     max-width: 800px !important;
+  }
+
+  .card-links {
+    margin: 0 5px;
+    color: ${primaryColor};
+  }
+  button:hover {
+    .card-links {
+      color: white;
+    }
   }
 `;
 
