@@ -44,11 +44,11 @@ export const Dashboard = () => {
         <UtilityLinks>
           <Title style={{ fontSize: '40px' }}>Category</Title>
 
-          <Link to="/account" className="utility-link">
+          <Link to="/category" className="utility-link">
             <Button type="button">Categories</Button>
           </Link>
 
-          <Link to="/register" className="utility-link">
+          <Link to="/category/new" className="utility-link">
             <Button type="button">Create a new category</Button>
           </Link>
         </UtilityLinks>
