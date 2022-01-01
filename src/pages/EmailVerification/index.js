@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/modules/user/actions';
+import { get } from 'lodash';
 
 export const EmailVerification = () => {
   const [email, setEmail] = useState('');
@@ -64,7 +65,7 @@ export const EmailVerification = () => {
         dispatch(userActions.createFetchUserLoggedInRequest());
       }
     } catch (error) {
-      const errors = error.response.data.body.errors;
+      const errors = get(error, 'response.data.body.errors', ['Internal error, try again later']);
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
       setIsLoading(false);
       setToken('');
@@ -111,6 +112,7 @@ export const EmailVerification = () => {
                 type="text"
                 autoFocus
                 value={token}
+                autoSave="false"
                 onChange={(e) => setToken(e.target.value)}
               />
               <small>
