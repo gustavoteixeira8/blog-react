@@ -12,6 +12,7 @@ import { Dashboard } from '../pages/Dashboard';
 import { DeleteAccount } from '../pages/DeleteAccount';
 import { Categories } from '../pages/Categories';
 import { CreateCategory } from '../pages/CreateCategory';
+import { UpdateAndDeleteCategory } from '../pages/UpdateAndDeleteCategory';
 
 export const AppRoutes = () => {
   return (
@@ -25,6 +26,13 @@ export const AppRoutes = () => {
       <MyRoute exact path="/account/delete" component={DeleteAccount} onlyLoggedIn={true} />
       <MyRoute exact path="/dashboard" component={Dashboard} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute exact path="/category" component={Categories} onlyLoggedIn={true} onlyAdmin={true} />
+      <MyRoute
+        exact
+        path="/category/update/:categoryId"
+        component={UpdateAndDeleteCategory}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
       <MyRoute
         exact
         path="/category/new"
