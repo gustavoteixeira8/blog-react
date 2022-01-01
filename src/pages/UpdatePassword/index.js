@@ -11,6 +11,7 @@ import { browserHistory } from '../../services/browserHistory';
 import { useDispatch, useSelector } from 'react-redux';
 import * as authAction from '../../store/modules/auth/actions';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { get } from 'lodash';
 
 export const UpdatePassword = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -84,7 +85,7 @@ export const UpdatePassword = () => {
 
       browserHistory.push('/');
     } catch (error) {
-      const errors = error.response.data.body.errors;
+      const errors = get(error, 'response.data.body.errors', ['Internal error, try again later']);
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
       setIsLoading(false);
       setPassword('');
