@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from '../../styles/globalStyles';
 import { Card, CardsContainer, CardTitle, CardText } from '../../components/Card';
 import { Title } from '../../components/Title';
@@ -14,29 +14,32 @@ export const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [page, setPage] = useState(1);
   const [order] = useState('createdAt');
-  const [next, setNext] = useState(5);
-  const perPage = 5;
+  const [next, setNext] = useState(20);
+  const perPage = 20;
 
-  const getCategories = async (start = 0, end = next) => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get('/category', { params: { page, perPage, order } });
+  const getCategories = useCallback(
+    async (start = 0, end = next) => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get('/category', { params: { page, perPage, order } });
 
-      const categoriesStored = get(response, 'data.body.data', []);
+        const categoriesStored = get(response, 'data.body.data', []);
 
-      const slicedCategories = categories.slice(start, end);
+        const slicedCategories = categories.slice(start, end);
 
-      const categoriesUpdated = [...slicedCategories, ...categoriesStored];
+        const categoriesUpdated = [...slicedCategories, ...categoriesStored];
 
-      setCategories(categoriesUpdated);
-      setPage(page + 1);
-      setNext(next + perPage);
-    } catch (error) {
-      toast.error('Internal error, try again later');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        setCategories(categoriesUpdated);
+        setPage(page + 1);
+        setNext(next + perPage);
+      } catch (error) {
+        toast.error('Internal error, try again later');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [setIsLoading, categories, next, order, page, perPage],
+  );
 
   const handleClick = async (e) => {
     await getCategories(0, next);
@@ -49,9 +52,15 @@ export const Categories = () => {
     }
   };
 
-  useLayoutEffect(() => {
-    if (categories.length === 0) getCategories(0, next);
-  });
+  useEffect(() => {
+    try {
+      if (categories.length === 0 && page === 1) {
+        getCategories();
+      }
+    } catch (error) {
+      return;
+    }
+  }, [getCategories, categories, page]);
 
   return (
     <>
@@ -73,17 +82,18 @@ export const Categories = () => {
             return (
               <Card key={category.id}>
                 <CardTitle>{category.name}</CardTitle>
+                <small style={{ textAlign: 'center', display: 'block' }}>{category.slug}</small>
                 <CardText>
-                  <Button>Update</Button>
-
-                  <Button>Delete</Button>
+                  <Link to={`/category/update/${category.id}`}>
+                    <Button>Update | Delete</Button>
+                  </Link>
                 </CardText>
               </Card>
             );
           })}
         </CardsContainer>
 
-        <Button onClick={handleClick} big id="load-more-categories">
+        <Button big onClick={handleClick}>
           Load more
         </Button>
       </Container>
