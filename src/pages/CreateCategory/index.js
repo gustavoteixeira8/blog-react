@@ -32,6 +32,7 @@ export const CreateCategory = () => {
       toast.success(message);
 
       setCategoryName('');
+      setPossibleSlug('');
 
       return;
     } catch (error) {
