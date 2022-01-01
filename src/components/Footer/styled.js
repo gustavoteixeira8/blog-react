@@ -22,11 +22,6 @@ export const FooterContainer = styled.footer`
     align-items: center;
   }
 
-  .copyright {
-    font-size: 24px;
-    margin-left: 5px;
-  }
-
   .footer-links {
     margin: 10px 5px 0 5px;
     color: white;

@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
   return (
     <FooterContainer>
-      <h1>
-        Gustavo Teixeira <span className="copyright">&copy;</span>
-      </h1>
+      <h1>Gustavo Teixeira</h1>
 
       <h1>
         <Link
