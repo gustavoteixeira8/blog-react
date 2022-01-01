@@ -5,7 +5,7 @@ import { Title } from '../../components/Title';
 export const NotFound = () => {
   return (
     <Container>
-      <Title>
+      <Title style={{ margin: 0 }}>
         404
         <p>Page not found</p>
       </Title>
