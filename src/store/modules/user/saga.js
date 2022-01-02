@@ -15,7 +15,7 @@ export const fetchUserLoggedInRequest = function* () {
     yield put(userActions.createFetchUserLoggedInSuccess({ data: userData }));
   } catch (error) {
     const status = get(error, 'response.data.status', 500);
-    const errors = get(error, 'response.data.errors', []);
+    const errors = get(error, 'response.data.body.errors', []);
 
     if (status >= 400 || status <= 499) {
       errors.map((e, index) => toast.error(e, { toastId: index }));
