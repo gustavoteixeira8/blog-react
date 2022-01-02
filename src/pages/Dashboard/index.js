@@ -63,10 +63,6 @@ export const Dashboard = () => {
           <Link to="/register" className="utility-link">
             <Button type="button">Register a new user</Button>
           </Link>
-
-          <Link to="/admin-permission" className="utility-link">
-            <Button type="button">Admin permission</Button>
-          </Link>
         </UtilityLinks>
       </ContainerUtilityLinks>
     </Container>
