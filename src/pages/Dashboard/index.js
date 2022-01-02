@@ -12,17 +12,17 @@ export const Dashboard = () => {
       <Title>Dashboard</Title>
 
       <CardsContainer>
-        <Card style={{ maxWidth: '300px' }}>
+        <Card>
           <CardTitle>Articles</CardTitle>
           <CardText>50</CardText>
         </Card>
 
-        <Card style={{ maxWidth: '300px' }}>
+        <Card>
           <CardTitle>Categories</CardTitle>
           <CardText>15</CardText>
         </Card>
 
-        <Card style={{ maxWidth: '300px' }}>
+        <Card>
           <CardTitle>Users</CardTitle>
           <CardText>3</CardText>
         </Card>
