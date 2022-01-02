@@ -32,8 +32,17 @@ export const Button = styled.button`
     props.big &&
     css`
       width: 100%;
-      height: 80px;
+      padding: 25px 0;
       font-size: 30px;
       margin-top: 20px;
+    `}
+
+  ${(props) =>
+    props.medium &&
+    css`
+      width: 50%;
+      font-size: 20px;
+      padding: 15px 0;
+      margin: 20px auto 0 auto;
     `}
 `;
