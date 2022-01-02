@@ -14,6 +14,7 @@ import { Categories } from '../pages/Categories';
 import { CreateCategory } from '../pages/CreateCategory';
 import { UpdateAndDeleteCategory } from '../pages/UpdateAndDeleteCategory';
 import { ViewAllAccounts } from '../pages/ViewAllAccounts';
+import { AddOrRemovePermission } from '../pages/AddOrRemovePermission';
 
 export const AppRoutes = () => {
   return (
@@ -27,6 +28,13 @@ export const AppRoutes = () => {
       <MyRoute exact path="/account/delete" component={DeleteAccount} onlyLoggedIn={true} />
       <MyRoute exact path="/dashboard" component={Dashboard} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute exact path="/category" component={Categories} onlyLoggedIn={true} onlyAdmin={true} />
+      <MyRoute
+        exact
+        path="/account/permission/:userId"
+        component={AddOrRemovePermission}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
       <MyRoute
         exact
         path="/account/all"
