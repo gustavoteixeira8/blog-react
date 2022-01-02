@@ -17,20 +17,27 @@ export const Form = styled.form`
     max-width: 500px;
   }
 
-  input {
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  select {
     padding-left: 9px;
     margin-top: 6px;
     border-radius: 3px;
     border: 1px solid ${primaryDarkColor};
     height: 40px;
     font-size: 17px;
+    background-color: white;
   }
 
   button {
     padding: 10px 80px;
   }
 
-  input:focus {
+  input[type='text']:focus,
+  input[type='email']:focus,
+  input[type='password']:focus,
+  select:focus {
     box-shadow: 0px 0px 7px 0px ${primaryDarkColor};
   }
 
