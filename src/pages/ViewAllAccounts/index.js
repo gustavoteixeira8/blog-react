@@ -110,7 +110,7 @@ export const ViewAllAccounts = () => {
           <label htmlFor="fullName">
             Is admin
             <select name="isAdmin" onChange={(e) => setIsAdmin(e.target.value)}>
-              <option value={undefined}>Default is undefined</option>
+              <option value={undefined}>DEFAULT</option>
               <option value={false}>NO</option>
               <option value={true}>YES</option>
             </select>
@@ -143,11 +143,11 @@ export const ViewAllAccounts = () => {
                   </CardText>
 
                   <Link
-                    to={`add-permission/${user.id}`}
+                    to={`/account/permission/${user.id}`}
                     className="card-links"
                     style={{ margin: '10px auto' }}
                   >
-                    <Button medium>Add permission</Button>
+                    <Button medium>Permission handler</Button>
                   </Link>
                 </Card>
               );
