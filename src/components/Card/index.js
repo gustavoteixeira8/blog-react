@@ -7,6 +7,7 @@ export const CardsContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 40px;
 
   @media (max-width: 850px) {
     flex-direction: column;
@@ -19,7 +20,7 @@ export const Card = styled.div`
   max-width: 300px;
   padding: 15px;
   color: black;
-  margin: 8px;
+  margin: 8px auto;
   box-shadow: 0px 0px 15px 0px #b5b4b4;
   background-color: #f7f7f7;
   border-radius: 7px;
@@ -32,7 +33,9 @@ export const Card = styled.div`
   }
 
   .card-links {
-    margin: 0 5px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
     color: ${primaryColor};
   }
   button:hover {
@@ -48,9 +51,12 @@ export const CardTitle = styled.h1`
   text-align: center;
 `;
 
-export const CardText = styled.p`
+export const CardText = styled.div`
   font-size: 24px;
   margin-top: 10px;
   text-align: center;
   font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
