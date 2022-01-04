@@ -11,7 +11,7 @@ import { browserHistory } from '../../services/browserHistory';
 import { get } from 'lodash';
 
 export const AddOrRemovePermission = (props) => {
-  const userId = get(props, 'match.params.userId', '');
+  const username = get(props, 'match.params.username', '');
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [addAdmin, setAddAdmin] = useState(false);
@@ -20,7 +20,7 @@ export const AddOrRemovePermission = (props) => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get(`/user/${userId}`);
+      const response = await axios.get(`/user/${username}`);
 
       const userStored = get(response, 'data.body.user', {});
 
@@ -30,7 +30,7 @@ export const AddOrRemovePermission = (props) => {
       toast.error('User not found');
       browserHistory.push('/account/all');
     }
-  }, [setIsLoading, userId]);
+  }, [setIsLoading, username]);
 
   useEffect(() => {
     try {
@@ -51,9 +51,9 @@ export const AddOrRemovePermission = (props) => {
       let response;
 
       if (addAdmin === 'true' || addAdmin === true) {
-        response = await axios.put('/user/admin/add', { userId });
+        response = await axios.put('/user/admin/add', { userId: user.id });
       } else {
-        response = await axios.put('/user/admin/remove', { userId });
+        response = await axios.put('/user/admin/remove', { userId: user.id });
       }
 
       const message = get(response, 'data.body.message', '');
