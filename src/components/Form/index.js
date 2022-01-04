@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primaryDarkColor } from '../../config/colors';
+import { primaryColor, primaryDarkColor } from '../../config/colors';
 
 export const Form = styled.form`
   width: 100%;
@@ -64,5 +64,49 @@ export const Form = styled.form`
   small a:hover,
   small p:hover {
     border-bottom: 1px solid black;
+  }
+`;
+
+export const FormFile = styled.form`
+  label {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: ${primaryColor};
+    border: 5px solid ${primaryColor};
+    margin: 30px auto;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    p {
+      color: white;
+    }
+
+    p.reset-thumbnail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      z-index: 1;
+      margin: 20px 0;
+      color: white;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px;
+      background-color: ${primaryColor};
+    }
+  }
+  input {
+    display: none;
   }
 `;
