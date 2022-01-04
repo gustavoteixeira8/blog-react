@@ -32,9 +32,9 @@ export const Register = () => {
       validateUsername(username),
       validatePassword(password),
     ];
-    const isValidUser = validators.map((validator) => validator.isValid).includes(true);
+    const isInvalidUser = validators.map((validator) => validator.isValid).includes(false);
 
-    if (!isValidUser) {
+    if (!isInvalidUser) {
       validators.map(({ message }) => toast.error(message, { toastId: Math.random() }));
       return;
     }
