@@ -20,7 +20,7 @@ export const Card = styled.div`
   max-width: 300px;
   padding: 15px;
   color: black;
-  margin: 8px auto;
+  margin: 8px 15px;
   box-shadow: 0px 0px 15px 0px #b5b4b4;
   background-color: #f7f7f7;
   border-radius: 7px;
@@ -30,6 +30,7 @@ export const Card = styled.div`
 
   @media (max-width: 850px) {
     max-width: 800px !important;
+    margin: 8px auto;
   }
 
   .card-links {
