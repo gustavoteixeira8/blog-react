@@ -72,3 +72,56 @@ export const validateCategoryName = (name) => {
     message: !isValid ? 'Category name must be between 3 and 255 characters' : null,
   };
 };
+
+export const validateArticleText = (text) => {
+  if (typeof text !== 'string') text = '';
+
+  const isValid = text.length >= 100 && text.length <= 30_000;
+
+  return {
+    isValid,
+    message: !isValid ? 'Article text must be between 100 and 30000 characters' : null,
+  };
+};
+
+export const validateArticleTitle = (title) => {
+  if (typeof title !== 'string') title = '';
+
+  const nameTrim = title.trim();
+  const checkLength = nameTrim.length >= 5 && nameTrim.length < 255;
+  const alphanumericAndNonAlphanumeric = /^[\w\W]+$/.test(title);
+
+  const isValid = checkLength && alphanumericAndNonAlphanumeric;
+
+  return {
+    isValid,
+    message: !isValid ? 'Title must be between 5 and 255 characters' : null,
+  };
+};
+
+export const validateImageExtension = (image) => {
+  if (typeof image !== 'string') image = '';
+
+  const [, imageType] = image.split('.');
+  const allowedTypes = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'webp'];
+
+  const isValid = allowedTypes.includes(imageType);
+
+  return {
+    isValid,
+    message: !isValid ? 'Image name must be in jpeg, png, gif, bmp and webp' : null,
+  };
+};
+
+export const validateNumberOfCategories = (categories) => {
+  if (!Array.isArray(categories)) categories = [];
+
+  let isValid = true;
+
+  if (categories.length <= 0 || categories.length > 5) isValid = false;
+
+  return {
+    isValid,
+    message: !isValid ? 'Maximum of different categories are 5' : null,
+  };
+};
