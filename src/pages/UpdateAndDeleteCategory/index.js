@@ -13,9 +13,10 @@ import { browserHistory } from '../../services/browserHistory';
 import { DeleteCategoryBox } from './styled';
 
 export const UpdateAndDeleteCategory = (props) => {
-  const categoryId = get(props, 'match.params.categoryId', '');
+  const categorySlug = get(props, 'match.params.categorySlug', '');
 
   const [isUpdateLayout, setIsUpdateLayout] = useState(true);
+  const [categoryId, setCategoryId] = useState('');
   const [categoryName, setCategoryName] = useState('INITIAL_STATE');
   const [possibleSlug, setPossibleSlug] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,10 +24,11 @@ export const UpdateAndDeleteCategory = (props) => {
   const getCategory = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/category/${categoryId}`);
+      const response = await axios.get(`/category/${categorySlug}`);
 
       const categoryStored = get(response, 'data.body.category', {});
 
+      setCategoryId(categoryStored.id);
       setCategoryName(categoryStored.name);
       setPossibleSlug(categoryStored.slug);
       setIsLoading(false);
@@ -34,7 +36,7 @@ export const UpdateAndDeleteCategory = (props) => {
       toast.error('Category not found');
       browserHistory.push('/category');
     }
-  }, [setIsLoading, categoryId]);
+  }, [setIsLoading, categorySlug]);
 
   useEffect(() => {
     try {
@@ -61,6 +63,7 @@ export const UpdateAndDeleteCategory = (props) => {
       const message = get(response, 'data.body.message', 'Category was successfully updated');
 
       toast.success(message);
+      browserHistory.push(`/category/update/${possibleSlug}`);
     } catch (error) {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.status', 500);
@@ -78,14 +81,21 @@ export const UpdateAndDeleteCategory = (props) => {
   const handleDelete = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.delete(`/category/${categoryId}`);
+      const response = await axios.delete(`/category/${categorySlug}`);
       const message = get(response, 'data.body.message', 'Category was successfully deleted');
 
       toast.success(message);
 
       browserHistory.push('/category');
     } catch (error) {
-      toast.error('Internal error, try again later');
+      const errors = get(error, 'response.data.body.errors', []);
+      const status = get(error, 'response.data.status', 500);
+
+      if (status >= 400 && status <= 499) {
+        errors.map((err, i) => toast.error(err, { toastId: i }));
+      } else {
+        toast.error('Internal error, try again later');
+      }
       setIsLoading(false);
     }
   };
