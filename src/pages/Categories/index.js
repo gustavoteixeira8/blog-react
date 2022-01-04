@@ -84,7 +84,7 @@ export const Categories = () => {
                 <CardTitle>{category.name}</CardTitle>
                 <small style={{ textAlign: 'center', display: 'block' }}>{category.slug}</small>
                 <CardText>
-                  <Link to={`/category/update/${category.id}`}>
+                  <Link to={`/category/update/${category.slug}`}>
                     <Button>Update | Delete</Button>
                   </Link>
                 </CardText>
