@@ -36,7 +36,7 @@ export const Dashboard = () => {
             <Button type="button">My articles</Button>
           </Link>
 
-          <Link to="/register" className="utility-link">
+          <Link to="/article/new" className="utility-link">
             <Button type="button">Post a new article</Button>
           </Link>
         </UtilityLinks>
