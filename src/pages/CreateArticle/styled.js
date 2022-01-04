@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SkipPage = styled.div`
   border-bottom: 1px solid black;
   display: inline-block;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
 `;
 

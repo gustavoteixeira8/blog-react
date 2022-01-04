@@ -169,7 +169,15 @@ export const CreateArticle = () => {
         'Article created successfully',
       );
 
-      if (thumbnailFile) submitThumbnail();
+      if (thumbnailFile) await submitThumbnail();
+
+      setTitle('');
+      setPossibleSlug('');
+      setText('');
+      setIsPublic(0);
+      setChoosedCategories([]);
+      setThumbnailURL('');
+      setThumbnailFile();
 
       toast.success(createArticleMessage);
       setIsLoading(false);
@@ -220,7 +228,7 @@ export const CreateArticle = () => {
                     accessKey={category.categoryId}
                     title="Clicking on this category will remove it"
                   >
-                    {category.categoryName}
+                    &times; {category.categoryName}
                   </Button>
                 );
               })}
@@ -270,9 +278,13 @@ export const CreateArticle = () => {
             </FormFile>
 
             <CategoriesChoosedContainer>
-              <h1>
-                Categories <span>&darr;</span>
-              </h1>
+              {choosedCategories.length ? (
+                <h1>
+                  Categories <span>&darr;</span>
+                </h1>
+              ) : (
+                ''
+              )}
               {choosedCategories.map((category) => {
                 return (
                   <Button key={category.categoryId} title={category.categoryName}>
