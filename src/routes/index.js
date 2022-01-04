@@ -15,6 +15,7 @@ import { CreateCategory } from '../pages/CreateCategory';
 import { UpdateAndDeleteCategory } from '../pages/UpdateAndDeleteCategory';
 import { ViewAllAccounts } from '../pages/ViewAllAccounts';
 import { AddOrRemovePermission } from '../pages/AddOrRemovePermission';
+import { CreateArticle } from '../pages/CreateArticle';
 
 export const AppRoutes = () => {
   return (
@@ -30,7 +31,7 @@ export const AppRoutes = () => {
       <MyRoute exact path="/category" component={Categories} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute
         exact
-        path="/account/permission/:userId"
+        path="/account/permission/:username"
         component={AddOrRemovePermission}
         onlyLoggedIn={true}
         onlyAdmin={true}
@@ -44,7 +45,7 @@ export const AppRoutes = () => {
       />
       <MyRoute
         exact
-        path="/category/update/:categoryId"
+        path="/category/update/:categorySlug"
         component={UpdateAndDeleteCategory}
         onlyLoggedIn={true}
         onlyAdmin={true}
@@ -56,6 +57,14 @@ export const AppRoutes = () => {
         onlyLoggedIn={true}
         onlyAdmin={true}
       />
+      <MyRoute
+        exact
+        path="/article/new"
+        component={CreateArticle}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
+
       <MyRoute path="*" component={NotFound} />
     </Switch>
   );
