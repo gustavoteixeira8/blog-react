@@ -51,7 +51,6 @@ export const ViewAllAccounts = () => {
     try {
       if (users.length === 0 && page === 1) {
         searchUsers();
-        return;
       }
     } catch (error) {
       return;
@@ -123,7 +122,7 @@ export const ViewAllAccounts = () => {
           {users.length > 0 ? (
             users.map((user) => {
               return (
-                <Card key={user.id} style={{ maxWidth: '800px' }}>
+                <Card key={user.id} style={{ maxWidth: '800px', margin: '8px auto' }}>
                   <CardTitle style={{ fontSize: '20px' }}>{user.fullName}</CardTitle>
 
                   <small style={{ textAlign: 'center', display: 'block' }}>{user.username}</small>
@@ -138,12 +137,15 @@ export const ViewAllAccounts = () => {
                         Email is verified: {user.isEmailVerified ? 'YES' : 'NO'}
                       </li>
                       <li title={user.createdAt}>Created at: {formatDate(user.createdAt)}</li>
-                      <li title={user.updatedAt}>Last update: {formatDate(user.updatedAt)}</li>
+                      <li title={user.updatedAt}>Last update:{formatDate(user.updatedAt)}</li>
+                      <li title={user.deletedAt}>
+                        Deleted at: {user.deletedAt ? formatDate(user.updatedAt) : 'NOT DELETED'}
+                      </li>
                     </ul>
                   </CardText>
 
                   <Link
-                    to={`/account/permission/${user.id}`}
+                    to={`/account/permission/${user.username}`}
                     className="card-links"
                     style={{ margin: '10px auto' }}
                   >
