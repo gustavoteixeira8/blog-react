@@ -17,6 +17,7 @@ import { ViewAllAccounts } from '../pages/ViewAllAccounts';
 import { AddOrRemovePermission } from '../pages/AddOrRemovePermission';
 import { CreateArticle } from '../pages/CreateArticle';
 import { ListArticlesForCreator } from '../pages/ListArticlesForCreator';
+import { UpdateArticle } from '../pages/UpdateArticle';
 
 export const AppRoutes = () => {
   return (
@@ -62,6 +63,13 @@ export const AppRoutes = () => {
         exact
         path="/article/new"
         component={CreateArticle}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
+      <MyRoute
+        exact
+        path="/article/update/:articleSlug"
+        component={UpdateArticle}
         onlyLoggedIn={true}
         onlyAdmin={true}
       />
