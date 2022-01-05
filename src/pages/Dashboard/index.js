@@ -32,7 +32,7 @@ export const Dashboard = () => {
         <UtilityLinks>
           <Title style={{ fontSize: '40px' }}>Article</Title>
 
-          <Link to="/account" className="utility-link">
+          <Link to="/my/article" className="utility-link">
             <Button type="button">My articles</Button>
           </Link>
 
