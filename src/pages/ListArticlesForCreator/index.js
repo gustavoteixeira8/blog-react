@@ -194,17 +194,33 @@ export const ListArticlesForCreator = () => {
 
                       <li title={article.deletedAt ? formatDate(article.deletedAt) : 'NOT DELETED'}>
                         Deleted at:
-                        {article.deletedAt ? formatDate(article.deletedAt) : 'NOT DELETED'}
+                        {article.deletedAt ? ' ' + formatDate(article.deletedAt) : ' NOT DELETED'}
                       </li>
                     </ul>
                   </CardText>
 
                   <Link
-                    to={`/article/update/${article.id}`}
+                    to={`/article/update/${article.slug}`}
                     className="card-links"
                     style={{ margin: '10px auto' }}
                   >
-                    <Button medium>UPDATE | DELETE</Button>
+                    <Button medium>UPDATE</Button>
+                  </Link>
+
+                  <Link
+                    to={`/article/delete/${article.slug}`}
+                    className="card-links"
+                    style={{ margin: '10px auto' }}
+                  >
+                    <Button medium>DELETE</Button>
+                  </Link>
+
+                  <Link
+                    to={`/article/recover/${article.slug}`}
+                    className="card-links"
+                    style={{ margin: '10px auto' }}
+                  >
+                    <Button medium>RECOVER</Button>
                   </Link>
                 </Card>
               );
