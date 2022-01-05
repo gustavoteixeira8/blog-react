@@ -34,7 +34,7 @@ export const Register = () => {
     ];
     const isInvalidUser = validators.map((validator) => validator.isValid).includes(false);
 
-    if (!isInvalidUser) {
+    if (isInvalidUser) {
       validators.map(({ message }) => toast.error(message, { toastId: Math.random() }));
       return;
     }
