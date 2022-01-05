@@ -61,3 +61,26 @@ export const CardText = styled.div`
   white-space: nowrap;
   overflow: hidden;
 `;
+
+export const CardImageContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${primaryColor};
+  border: 5px solid ${primaryColor};
+  margin: 30px auto;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    color: white;
+  }
+`;
