@@ -339,6 +339,7 @@ export const CreateArticle = () => {
                   initialValue=""
                   init={editorConfig.config}
                   onEditorChange={(newValue) => setText(newValue)}
+                  onInit={(evt, editor) => editor.setContent(text)}
                   value={text}
                 />
               </label>
