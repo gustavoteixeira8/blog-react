@@ -81,31 +81,18 @@ export const FormFile = styled.form`
     cursor: pointer;
     overflow: hidden;
     position: relative;
+    transition: 500ms all;
 
     img {
       width: 100%;
+      transition: 100ms all;
     }
 
     p {
       color: white;
     }
-
-    p.reset-thumbnail {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      z-index: 1;
-      margin: 20px 0;
-      color: white;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px;
-      background-color: ${primaryColor};
-    }
   }
+
   input {
     display: none;
   }
