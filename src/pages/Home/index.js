@@ -13,7 +13,6 @@ import { Container } from '../../styles/globalStyles';
 import { HomeContainer, CategoryBox } from './styled';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
-import { browserHistory } from '../../services/browserHistory';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/formatDate';
