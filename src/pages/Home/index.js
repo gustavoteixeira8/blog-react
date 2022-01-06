@@ -106,11 +106,6 @@ export const Home = () => {
     }
   }, [getCategories, categories, categoriesPage, articles, articlesPage, getArticles]);
 
-  const goToArticle = (e) => {
-    const endPoint = e.target.getAttribute('accessKey');
-    browserHistory.push(endPoint);
-  };
-
   return (
     <>
       <Loading isLoading={isLoading} />
@@ -122,34 +117,39 @@ export const Home = () => {
             {articles.length > 0 ? (
               articles.map((article) => {
                 return (
-                  <Card
+                  <Link
                     key={article.id}
-                    style={{ maxWidth: '1280px', margin: '15px auto' }}
-                    onClick={goToArticle}
-                    accessKey={`/article/${article.slug}`}
+                    to={`/article/${article.slug}`}
+                    style={{ width: '100%', maxWidth: '1280px' }}
                     title={`Read article ${article.title}`}
                   >
-                    <CardImageContainer>
-                      {article.thumbnail ? <img src={article.thumbnail} /> : <p>No image found</p>}
-                    </CardImageContainer>
+                    <Card key={article.id} style={{ maxWidth: '1280px', margin: '15px auto' }}>
+                      <CardImageContainer>
+                        {article.thumbnail ? (
+                          <img src={article.thumbnail} />
+                        ) : (
+                          <p>No image found</p>
+                        )}
+                      </CardImageContainer>
 
-                    <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
+                      <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
 
-                    <CardText style={{ fontSize: '18px' }}>
-                      <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                        <li title={article.createdAt}>
-                          Categories:{' '}
-                          {article.categories.map((category) => category.name).join(', ')}
-                        </li>
+                      <CardText style={{ fontSize: '18px' }}>
+                        <ul style={{ display: 'inline-block', textAlign: 'left' }}>
+                          <li title={article.createdAt}>
+                            Categories:{' '}
+                            {article.categories.map((category) => category.name).join(', ')}
+                          </li>
 
-                        <li title={article.createdAt}>Author: {article.user.username}</li>
+                          <li title={article.createdAt}>Author: {article.user.username}</li>
 
-                        <li title={article.updatedAt}>
-                          Last update: {formatDate(article.updatedAt)}
-                        </li>
-                      </ul>
-                    </CardText>
-                  </Card>
+                          <li title={article.updatedAt}>
+                            Last update: {formatDate(article.updatedAt)}
+                          </li>
+                        </ul>
+                      </CardText>
+                    </Card>
+                  </Link>
                 );
               })
             ) : (
