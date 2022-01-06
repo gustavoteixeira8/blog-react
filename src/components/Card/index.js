@@ -63,7 +63,7 @@ export const CardText = styled.div`
 export const CardImageContainer = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 250px;
+  max-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
