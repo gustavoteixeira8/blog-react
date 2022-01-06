@@ -49,6 +49,7 @@ export const Nav = styled.nav`
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     transition: 600ms all;
+    z-index: 3;
   }
 
   .mobile-menu-box a {
