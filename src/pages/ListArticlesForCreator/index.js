@@ -199,29 +199,29 @@ export const ListArticlesForCreator = () => {
                     </ul>
                   </CardText>
 
-                  <Link
-                    to={`/article/update/${article.slug}`}
-                    className="card-links"
-                    style={{ margin: '10px auto' }}
-                  >
-                    <Button medium>UPDATE</Button>
-                  </Link>
+                  {article.deletedAt ? (
+                    ''
+                  ) : (
+                    <Link to={`/article/update/${article.slug}`} className="card-links">
+                      <Button medium>UPDATE</Button>
+                    </Link>
+                  )}
 
-                  <Link
-                    to={`/article/delete/${article.slug}`}
-                    className="card-links"
-                    style={{ margin: '10px auto' }}
-                  >
-                    <Button medium>DELETE</Button>
-                  </Link>
+                  {article.deletedAt ? (
+                    ''
+                  ) : (
+                    <Link to={`/article/delete/${article.slug}`} className="card-links">
+                      <Button medium>DELETE</Button>
+                    </Link>
+                  )}
 
-                  <Link
-                    to={`/article/recover/${article.slug}`}
-                    className="card-links"
-                    style={{ margin: '10px auto' }}
-                  >
-                    <Button medium>RECOVER</Button>
-                  </Link>
+                  {article.deletedAt ? (
+                    <Link to={`/article/recover/${article.slug}`} className="card-links">
+                      <Button medium>RECOVER</Button>
+                    </Link>
+                  ) : (
+                    ''
+                  )}
                 </Card>
               );
             })
