@@ -12,6 +12,7 @@ import { CategoriesChoosedContainer, SkipPage } from '../CreateArticle/styled';
 import { Card, CardsContainer, CardText, CardTitle } from '../../components/Card';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
+import { browserHistory } from '../../services/browserHistory';
 import { formatDate } from '../../utils/formatDate';
 import {
   validateArticleText,
@@ -79,7 +80,15 @@ export const UpdateArticle = (props) => {
       setIsPublic(Number(articleStored.isPublic));
       setThumbnailURL(articleStored.thumbnail);
     } catch (error) {
-      toast.error('Internal error, try again later');
+      const errors = get(error, 'response.data.body.errors', []);
+      const status = get(error, 'response.data.status', 500);
+
+      if (status >= 400 && status <= 499) {
+        errors.map((err, i) => toast.error(err, { toastId: i }));
+        browserHistory.push('/my/article');
+      } else {
+        toast.error('Internal error, try again later');
+      }
     } finally {
       setIsLoading(false);
     }
