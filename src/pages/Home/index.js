@@ -135,14 +135,16 @@ export const Home = () => {
 
                       <CardText style={{ fontSize: '18px' }}>
                         <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                          <li title={article.createdAt}>
+                          <li
+                            title={article.categories.map((category) => category.name).join(', ')}
+                          >
                             Categories:{' '}
                             {article.categories.map((category) => category.name).join(', ')}
                           </li>
 
-                          <li title={article.createdAt}>Author: {article.user.username}</li>
+                          <li title={article.user.username}>Author: {article.user.username}</li>
 
-                          <li title={article.updatedAt}>
+                          <li title={formatDate(article.updatedAt)}>
                             Last update: {formatDate(article.updatedAt)}
                           </li>
                         </ul>
