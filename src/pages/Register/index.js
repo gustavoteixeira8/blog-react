@@ -54,7 +54,7 @@ export const Register = () => {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.body.status', 500);
 
-      if (status >= 400 || status <= 499) {
+      if (status >= 400 && status <= 499) {
         errors.map((error) => toast.error(error, { toastId: Math.random() }));
         return;
       }

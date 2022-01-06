@@ -68,7 +68,7 @@ export const UpdateAndDeleteCategory = (props) => {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.status', 500);
 
-      if (status >= 400 || status <= 499) {
+      if (status >= 400 && status <= 499) {
         errors.map((e, index) => toast.error(e, { toastId: index }));
       } else {
         toast.error('Internal error, try again later');
@@ -81,7 +81,7 @@ export const UpdateAndDeleteCategory = (props) => {
   const handleDelete = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.delete(`/category/${categorySlug}`);
+      const response = await axios.delete(`/category/${categoryId}`);
       const message = get(response, 'data.body.message', 'Category was successfully deleted');
 
       toast.success(message);
