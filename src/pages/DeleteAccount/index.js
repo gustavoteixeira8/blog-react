@@ -3,11 +3,13 @@ import { Container } from '../../styles/globalStyles';
 import { Title } from '../../components/Title';
 import { DeleteAccountBox } from './styled';
 import { Button } from '../../components/Button';
-import { useDispatch } from 'react-redux';
+import { Loading } from '../../components/Loading';
+import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/modules/user/actions';
 
 export const DeleteAccount = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.user);
 
   const handleClick = () => {
     dispatch(userActions.createDeleteUserLoggedInRequest());
@@ -15,6 +17,7 @@ export const DeleteAccount = () => {
 
   return (
     <>
+      <Loading isLoading={isLoading} />
       <Container>
         <DeleteAccountBox>
           <Title>Delete my account</Title>

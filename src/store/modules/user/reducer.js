@@ -18,7 +18,7 @@ export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case types.FETCH_USER_LOGGED_IN_REQUEST: {
       const newState = { ...initialUserState };
-      initialUserState.isLoading = true;
+      newState.isLoading = true;
       return newState;
     }
 
@@ -37,7 +37,13 @@ export const userReducer = (state = initialUserState, action) => {
 
     case types.UPDATE_USER_LOGGED_IN_REQUEST: {
       const newState = { ...state };
-      initialUserState.isLoading = true;
+      newState.isLoading = true;
+      return newState;
+    }
+
+    case types.DELETE_USER_LOGGED_IN_REQUEST: {
+      const newState = { ...state };
+      newState.isLoading = true;
       return newState;
     }
 

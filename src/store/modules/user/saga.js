@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import axios from '../../../services/axios';
+import { browserHistory } from '../../../services/browserHistory';
 import * as userActions from '../user/actions';
 import * as authActions from '../auth/actions';
 import * as types from '../types';
@@ -17,7 +18,7 @@ export const fetchUserLoggedInRequest = function* () {
     const status = get(error, 'response.data.status', 500);
     const errors = get(error, 'response.data.body.errors', []);
 
-    if (status >= 400 || status <= 499) {
+    if (status >= 400 && status <= 499) {
       errors.map((e, index) => toast.error(e, { toastId: index }));
     } else {
       toast.error('Internal error, try again later');
@@ -40,10 +41,12 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
     const errors = get(error, 'response.data.body.errors', []);
     const status = get(error, 'response.data.body.status', 500);
 
-    if (status >= 400 || status <= 499) {
+    if (status >= 400 && status <= 499) {
       errors.map((error) => toast.error(error, { toastId: Math.random() }));
       return;
     }
+
+    toast.error('Internal error, try again later');
 
     yield put(userActions.createFetchUserLoggedInError());
   }
@@ -51,7 +54,7 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
 
 export const deleteUserLoggedInRequest = function* () {
   try {
-    const response = yield call(axios.delete, '/user');
+    const response = yield call(axios.delete, '/use');
 
     const message = get(response, 'data.body.message', 'Your user was deleted successfully');
 
@@ -62,10 +65,16 @@ export const deleteUserLoggedInRequest = function* () {
     const errors = get(error, 'response.data.body.errors', []);
     const status = get(error, 'response.data.body.status', 500);
 
-    if (status >= 400 || status <= 499) {
+    if (status >= 400 && status <= 499) {
       errors.map((error) => toast.error(error, { toastId: Math.random() }));
       return;
     }
+
+    toast.error('Internal error, try again later');
+
+    yield put(userActions.createFetchUserLoggedInError());
+
+    browserHistory.push('/account');
   }
 };
 

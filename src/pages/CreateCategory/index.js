@@ -37,8 +37,6 @@ export const CreateCategory = () => {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.status', 500);
 
-      console.log(errors, status);
-
       if (status >= 400 && status <= 499) {
         errors.map((e, index) => toast.error(e, { toastId: index }));
       } else {
