@@ -57,8 +57,7 @@ export const CardText = styled.div`
   margin-top: 10px;
   text-align: center;
   font-weight: normal;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: auto;
 `;
 
 export const CardImageContainer = styled.div`
