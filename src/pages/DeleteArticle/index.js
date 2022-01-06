@@ -61,7 +61,6 @@ export const DeleteArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   };
