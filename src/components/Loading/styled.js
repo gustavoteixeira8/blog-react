@@ -11,11 +11,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: ${primaryModalBackgroundColor};
   filter: opacity(0.9);
   transition: 300ms all;
 
-  span {
+  p {
     color: white;
     font-weight: bold;
     font-size: 50px;
