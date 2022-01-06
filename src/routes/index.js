@@ -18,6 +18,8 @@ import { AddOrRemovePermission } from '../pages/AddOrRemovePermission';
 import { CreateArticle } from '../pages/CreateArticle';
 import { ListArticlesForCreator } from '../pages/ListArticlesForCreator';
 import { UpdateArticle } from '../pages/UpdateArticle';
+import { DeleteArticle } from '../pages/DeleteArticle';
+import { RecoverArticle } from '../pages/RecoverArticle';
 
 export const AppRoutes = () => {
   return (
@@ -73,6 +75,21 @@ export const AppRoutes = () => {
         onlyLoggedIn={true}
         onlyAdmin={true}
       />
+      <MyRoute
+        exact
+        path="/article/delete/:articleSlug"
+        component={DeleteArticle}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
+      <MyRoute
+        exact
+        path="/article/recover/:articleSlug"
+        component={RecoverArticle}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
+
       <MyRoute
         exact
         path="/my/article"
