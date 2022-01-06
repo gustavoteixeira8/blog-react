@@ -78,19 +78,25 @@ export const Categories = () => {
             </CardText>
           </Card>
 
-          {categories.map((category) => {
-            return (
-              <Card key={category.id}>
-                <CardTitle>{category.name}</CardTitle>
-                <small style={{ textAlign: 'center', display: 'block' }}>{category.slug}</small>
-                <CardText>
-                  <Link to={`/category/update/${category.slug}`}>
-                    <Button>Update | Delete</Button>
-                  </Link>
-                </CardText>
-              </Card>
-            );
-          })}
+          {categories.length ? (
+            categories.map((category) => {
+              return (
+                <Card key={category.id}>
+                  <CardTitle>{category.name}</CardTitle>
+                  <small style={{ textAlign: 'center', display: 'block' }}>{category.slug}</small>
+                  <CardText>
+                    <Link to={`/category/update/${category.slug}`}>
+                      <Button>Update | Delete</Button>
+                    </Link>
+                  </CardText>
+                </Card>
+              );
+            })
+          ) : (
+            <Card>
+              <CardTitle>No categories found</CardTitle>
+            </Card>
+          )}
         </CardsContainer>
 
         <Button big onClick={handleClick}>
