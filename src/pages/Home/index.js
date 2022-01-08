@@ -110,7 +110,7 @@ export const Home = () => {
       <Loading isLoading={isLoading} />
       <HomeContainer>
         <Container style={{ maxWidth: '960px' }}>
-          <CardsContainer>
+          <CardsContainer style={{ marginTop: '0' }}>
             {articles.length > 0 ? (
               articles.map((article) => {
                 return (
