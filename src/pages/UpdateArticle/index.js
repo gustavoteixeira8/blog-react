@@ -57,9 +57,9 @@ export const UpdateArticle = (props) => {
         setCategories(categoriesUpdated);
         setPage(page + 1);
         setNext(next + perPage);
+        setIsLoading(false);
       } catch (error) {
         toast.error('Internal error, try again later');
-      } finally {
         setIsLoading(false);
       }
     },
@@ -79,6 +79,7 @@ export const UpdateArticle = (props) => {
       setPossibleSlug(articleStored.slug);
       setIsPublic(Number(articleStored.isPublic));
       setThumbnailURL(articleStored.thumbnail);
+      setIsLoading(false);
     } catch (error) {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.status', 500);
@@ -89,7 +90,6 @@ export const UpdateArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   }, [setIsLoading, articleSlug]);
@@ -204,7 +204,7 @@ export const UpdateArticle = (props) => {
       const categoriesId = choosedCategories.map(({ categoryId }) => categoryId);
       const response = await axios.put(`/article/${article.id}`, {
         title,
-        isPublic: Boolean(isPublic),
+        isPublic: Boolean(Number(isPublic)),
         text,
         categoriesId,
       });
@@ -230,6 +230,8 @@ export const UpdateArticle = (props) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
+    console.log(file);
 
     if (!file) {
       setThumbnailURL('');
@@ -303,7 +305,7 @@ export const UpdateArticle = (props) => {
             <FormFile>
               <label htmlFor="thumbnail">
                 {thumbnailURL ? (
-                  <img src={thumbnailURL} alt="Thumbnail" />
+                  <img src={thumbnailURL} alt={article.title} />
                 ) : (
                   <p>Click here to select an image</p>
                 )}
