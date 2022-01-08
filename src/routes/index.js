@@ -20,6 +20,7 @@ import { ListArticlesForCreator } from '../pages/ListArticlesForCreator';
 import { UpdateArticle } from '../pages/UpdateArticle';
 import { DeleteArticle } from '../pages/DeleteArticle';
 import { RecoverArticle } from '../pages/RecoverArticle';
+import { Article } from '../pages/Article';
 
 export const AppRoutes = () => {
   return (
@@ -63,13 +64,6 @@ export const AppRoutes = () => {
       />
       <MyRoute
         exact
-        path="/article/new"
-        component={CreateArticle}
-        onlyLoggedIn={true}
-        onlyAdmin={true}
-      />
-      <MyRoute
-        exact
         path="/article/update/:articleSlug"
         component={UpdateArticle}
         onlyLoggedIn={true}
@@ -89,7 +83,14 @@ export const AppRoutes = () => {
         onlyLoggedIn={true}
         onlyAdmin={true}
       />
-
+      <MyRoute
+        exact
+        path="/article/new"
+        component={CreateArticle}
+        onlyLoggedIn={true}
+        onlyAdmin={true}
+      />
+      <MyRoute exact path="/article/:articleSlug" component={Article} />
       <MyRoute
         exact
         path="/my/article"
