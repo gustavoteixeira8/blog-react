@@ -27,10 +27,6 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
-  ul {
-    list-style: none;
-  }
-
   body .Toastify .Toastify__toast-container .Toastify__toast {
     background-color: ${primaryDarkColor};
     color: white;
