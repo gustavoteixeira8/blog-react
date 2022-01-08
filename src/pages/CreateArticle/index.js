@@ -161,7 +161,12 @@ export const CreateArticle = () => {
     try {
       setIsLoading(true);
       const categoriesId = choosedCategories.map(({ categoryId }) => categoryId);
-      const response = await axios.post('/article', { title, isPublic, text, categoriesId });
+      const response = await axios.post('/article', {
+        title,
+        isPublic: Boolean(Number(isPublic)),
+        text,
+        categoriesId,
+      });
 
       const createArticleMessage = get(
         response,
