@@ -4,15 +4,15 @@ export const editorConfig = {
     menubar: true,
     plugins: [
       'advlist autolink lists link charmap print preview anchor',
-      'searchreplace visualblocks code fullscreen',
-      'insertdatetime media table paste code help wordcount',
+      'searchreplace visualblocks code codesample fullscreen',
+      'insertdatetime table paste help wordcount emoticons',
     ],
     toolbar:
       'undo redo | formatselect | ' +
       'bold italic backcolor | alignleft aligncenter ' +
-      'alignright alignjustify | bullist numlist outdent indent | ' +
-      'removeformat | help',
-    content_style: `body { font-family: 'Courier New', Courier, monospace !important; font-size:14px }`,
+      'alignright alignjustify | code codesample | bullist numlist outdent indent' +
+      'removeformat | emoticons | help',
+    content_style: `body { font-family: 'Courier New', Courier, monospace !important; } * { font-size: 22px; }`,
   },
   apiKey: 'hodiak13k33m6krft9goq90iuhparv3ykt8blhc1z0fgqbdq',
 };
