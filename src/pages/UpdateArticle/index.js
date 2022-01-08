@@ -211,7 +211,7 @@ export const UpdateArticle = (props) => {
 
       const message = get(response, 'data.body.message', 'Your article was updated successfully');
 
-      if (thumbnailFile) await submitThumbnail();
+      await submitThumbnail();
 
       toast.success(message);
       setIsLoading(false);
@@ -230,8 +230,6 @@ export const UpdateArticle = (props) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-
-    console.log(file);
 
     if (!file) {
       setThumbnailURL('');
