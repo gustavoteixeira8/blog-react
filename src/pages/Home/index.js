@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Loading } from '../../components/Loading';
-import { Title } from '../../components/Title';
 import { Button } from '../../components/Button';
 import {
   Card,
+  CardContext,
   CardImageContainer,
   CardsContainer,
   CardText,
   CardTitle,
 } from '../../components/Card';
 import { Container } from '../../styles/globalStyles';
-import { HomeContainer, CategoryBox } from './styled';
+import { HomeContainer, CategoryBox, ArticleDetails } from './styled';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
-import { formatDate } from '../../utils/formatDate';
+import { formatDistanceDate } from '../../utils/formatDate';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -110,47 +110,43 @@ export const Home = () => {
       <Loading isLoading={isLoading} />
       <HomeContainer>
         <Container style={{ maxWidth: '960px' }}>
-          <Title>Articles</Title>
-
           <CardsContainer>
             {articles.length > 0 ? (
               articles.map((article) => {
                 return (
-                  <Link
-                    key={article.id}
-                    to={`/article/${article.slug}`}
-                    style={{ width: '100%', maxWidth: '1280px' }}
-                    title={`Read article ${article.title}`}
-                  >
-                    <Card key={article.id} style={{ maxWidth: '1280px', margin: '15px auto' }}>
-                      <CardImageContainer>
-                        {article.thumbnail ? (
-                          <img src={article.thumbnail} />
-                        ) : (
-                          <p>No image found</p>
-                        )}
-                      </CardImageContainer>
+                  <Card key={article.id} style={{ maxWidth: '1280px', margin: '15px auto' }}>
+                    <CardContext>
+                      {article.thumbnail ? (
+                        <Link to={`/article/${article.slug}`}>
+                          <CardImageContainer>
+                            <img src={article.thumbnail} alt={article.title} />
+                          </CardImageContainer>
+                        </Link>
+                      ) : (
+                        ''
+                      )}
 
-                      <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
+                      <CardTitle style={{ fontSize: '38px', textDecoration: 'underline' }}>
+                        <Link to={`/article/${article.slug}`}>{article.title}</Link>
+                      </CardTitle>
 
                       <CardText style={{ fontSize: '18px' }}>
-                        <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                          <li
-                            title={article.categories.map((category) => category.name).join(', ')}
-                          >
-                            Categories:{' '}
-                            {article.categories.map((category) => category.name).join(', ')}
-                          </li>
-
-                          <li title={article.user.username}>Author: {article.user.username}</li>
-
-                          <li title={formatDate(article.updatedAt)}>
-                            Last update: {formatDate(article.updatedAt)}
-                          </li>
-                        </ul>
+                        <ArticleDetails>
+                          <p>Posted {formatDistanceDate(new Date(article.createdAt))}</p>
+                          <p>
+                            {article.categories.map((category, i) => {
+                              return (
+                                <Link key={category.id} to={`/article/category/${category.slug}`}>
+                                  {category.name}
+                                  {article.categories.length === i + 1 ? '' : ','}
+                                </Link>
+                              );
+                            })}
+                          </p>
+                        </ArticleDetails>
                       </CardText>
-                    </Card>
-                  </Link>
+                    </CardContext>
+                  </Card>
                 );
               })
             ) : (

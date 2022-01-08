@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primaryColor } from '../../config/colors';
+import { primaryColor, primaryDarkColor } from '../../config/colors';
 
 export const HomeContainer = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ export const HomeContainer = styled.div`
   }
 
   @media (max-width: 1280px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
 
     .container-category {
       max-width: 960px !important;
@@ -46,5 +46,23 @@ export const CategoryBox = styled.div`
   button {
     width: 100%;
     margin: 5px 0 0 0;
+  }
+`;
+
+export const ArticleDetails = styled.div`
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  color: ${primaryDarkColor};
+
+  a {
+    margin-right: 6px;
+    text-decoration: none;
+    color: ${primaryDarkColor};
+  }
+
+  a:hover {
+    color: ${primaryColor};
   }
 `;
