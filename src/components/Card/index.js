@@ -46,10 +46,19 @@ export const Card = styled.div`
   }
 `;
 
+export const CardContext = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
 export const CardTitle = styled.h1`
   font-size: 30px;
   font-weight: normal;
   text-align: center;
+
+  a {
+    color: black;
+  }
 `;
 
 export const CardText = styled.div`
@@ -67,12 +76,13 @@ export const CardImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${primaryColor};
-  border: 5px solid ${primaryColor};
+  /* background: ${primaryColor};
+  border: 5px solid ${primaryColor}; */
   margin: 30px auto;
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  border-radius: 5px;
 
   img {
     width: 100%;
