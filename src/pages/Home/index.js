@@ -39,9 +39,9 @@ export const Home = () => {
 
       setCategories(categoriesUpdated);
       setCategoriesPage(categoriesPage + 1);
+      setIsLoading(false);
     } catch (error) {
       toast.error('Internal error, try again later');
-    } finally {
       setIsLoading(false);
     }
   }, [setIsLoading, categories, categoriesPage, perPage]);
@@ -73,9 +73,9 @@ export const Home = () => {
 
       setArticles(articlesUpdated);
       setArticlesPage(articlesPage + 1);
+      setIsLoading(false);
     } catch (error) {
       toast.error('Internal error, try again later');
-    } finally {
       setIsLoading(false);
     }
   }, [articles, articlesPage]);
