@@ -211,7 +211,7 @@ export const UpdateArticle = (props) => {
 
       const message = get(response, 'data.body.message', 'Your article was updated successfully');
 
-      await submitThumbnail();
+      if (article.thumbnail !== thumbnailURL) await submitThumbnail();
 
       toast.success(message);
       setIsLoading(false);
