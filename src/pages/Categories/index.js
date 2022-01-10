@@ -68,9 +68,9 @@ export const Categories = () => {
           <Card>
             <CardTitle>Add category</CardTitle>
             <CardText>
-              <Button>
-                <Link to="/category/new">Create category</Link>
-              </Button>
+              <Link to="/category/new">
+                <Button>Create category</Button>
+              </Link>
             </CardText>
           </Card>
 
