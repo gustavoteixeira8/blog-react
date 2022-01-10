@@ -106,25 +106,21 @@ export const UpdateArticle = (props) => {
   };
 
   useEffect(() => {
-    try {
-      if (categories.length === 0 && page === 1) {
-        getCategories();
-      }
+    if (categories.length === 0 && page === 1) {
+      getCategories();
+    }
 
-      if (!article) {
-        getArticle();
-      }
+    if (!article) {
+      getArticle();
+    }
 
-      if (article) {
-        const newCategories = [...article.categories].map((category) => ({
-          categoryName: category.name,
-          categoryId: category.id,
-        }));
+    if (article) {
+      const newCategories = [...article.categories].map((category) => ({
+        categoryName: category.name,
+        categoryId: category.id,
+      }));
 
-        setChoosedCategories(newCategories);
-      }
-    } catch (error) {
-      return;
+      setChoosedCategories(newCategories);
     }
   }, [getCategories, categories, page, getArticle, article]);
 

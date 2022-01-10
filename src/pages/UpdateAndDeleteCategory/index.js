@@ -39,12 +39,8 @@ export const UpdateAndDeleteCategory = (props) => {
   }, [setIsLoading, categorySlug]);
 
   useEffect(() => {
-    try {
-      if (categoryName === 'INITIAL_STATE') {
-        getCategory();
-      }
-    } catch (error) {
-      return;
+    if (categoryName === 'INITIAL_STATE') {
+      getCategory();
     }
   }, [getCategory, categoryName]);
 

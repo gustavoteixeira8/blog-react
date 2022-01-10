@@ -73,12 +73,8 @@ export const CreateArticle = () => {
   };
 
   useEffect(() => {
-    try {
-      if (categories.length === 0 && page === 1) {
-        getCategories();
-      }
-    } catch (error) {
-      return;
+    if (categories.length === 0 && page === 1) {
+      getCategories();
     }
   }, [getCategories, categories, page]);
 

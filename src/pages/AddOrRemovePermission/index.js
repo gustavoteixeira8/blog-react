@@ -33,12 +33,8 @@ export const AddOrRemovePermission = (props) => {
   }, [setIsLoading, username]);
 
   useEffect(() => {
-    try {
-      if (!Object.keys(user).length) {
-        getUser();
-      }
-    } catch (error) {
-      return;
+    if (!Object.keys(user).length) {
+      getUser();
     }
   }, [user, getUser]);
 

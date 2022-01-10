@@ -48,12 +48,8 @@ export const ViewAllAccounts = () => {
   };
 
   useEffect(() => {
-    try {
-      if (users.length === 0 && page === 1) {
-        searchUsers();
-      }
-    } catch (error) {
-      return;
+    if (users.length === 0 && page === 1) {
+      searchUsers();
     }
   }, [searchUsers, users, page, next]);
 

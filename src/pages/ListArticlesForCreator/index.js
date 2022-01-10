@@ -60,12 +60,8 @@ export const ListArticlesForCreator = () => {
   };
 
   useEffect(() => {
-    try {
-      if (articles.length === 0 && page === 1) {
-        searchArticles();
-      }
-    } catch (error) {
-      return;
+    if (articles.length === 0 && page === 1) {
+      searchArticles();
     }
   }, [searchArticles, articles, page, next]);
 
