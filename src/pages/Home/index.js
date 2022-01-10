@@ -98,9 +98,11 @@ export const Home = () => {
   };
 
   const handleClickCategoryName = async (e) => {
-    if (categorySlugFormURL) browserHistory.replace({ search: '' });
-
     const targetTitle = e.target.getAttribute('title');
+
+    if (categoryName === targetTitle) return;
+
+    if (categorySlugFormURL) browserHistory.replace({ search: '' });
 
     setArticles([]);
     setArticlesPage(1);
