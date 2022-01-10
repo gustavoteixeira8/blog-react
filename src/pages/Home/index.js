@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Loading } from '../../components/Loading';
+import { Title } from '../../components/Title';
 import { Button } from '../../components/Button';
 import {
   Card,
@@ -16,8 +17,12 @@ import axios from '../../services/axios';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { formatDistanceDate } from '../../utils/formatDate';
+import { useLocation } from 'react-router-dom';
 
 export const Home = () => {
+  const search = useLocation().search;
+  const categorySlugFormURL = new URLSearchParams(search).get('cn');
+
   const [isLoading, setIsLoading] = useState(false);
   const perPage = 20;
   const [categories, setCategories] = useState([]);
@@ -25,6 +30,7 @@ export const Home = () => {
 
   const [articles, setArticles] = useState([]);
   const [articlesPage, setArticlesPage] = useState(1);
+  const [categoryName, setCategoryName] = useState(categorySlugFormURL || '');
 
   const getCategories = useCallback(async () => {
     try {
@@ -62,7 +68,7 @@ export const Home = () => {
       setIsLoading(true);
 
       const response = await axios.get('/article', {
-        params: { perPage, page: articlesPage },
+        params: { perPage, page: articlesPage, ...(categoryName ? { categoryName } : null) },
       });
 
       const articlesStored = get(response, 'data.body.articles.data', []);
@@ -78,38 +84,67 @@ export const Home = () => {
       toast.error('Internal error, try again later');
       setIsLoading(false);
     }
-  }, [articles, articlesPage]);
+  }, [articles, articlesPage, categoryName]);
 
-  const handleClickLoadMoreArticles = async (e) => {
-    await getArticles();
-
+  const handleClickLoadMoreArticles = async () => {
     const math = perPage * articlesPage - perPage;
 
     if (articles.length < math) {
-      e.target.style.display = 'none';
       return;
     }
+
+    await getArticles();
   };
 
-  useEffect(() => {
-    try {
-      if (categories.length === 0 && categoriesPage === 1) {
-        getCategories();
-      }
+  const handleClickCategoryName = async (e) => {
+    const targetTitle = e.target.getAttribute('title');
 
-      if (articles.length === 0 && articlesPage === 1) {
-        getArticles();
-      }
+    setArticles([]);
+    setArticlesPage(1);
+    setCategoryName(targetTitle);
+  };
+
+  const handleQueryParams = useCallback(async () => {
+    if (!categorySlugFormURL) return;
+
+    try {
+      const response = await axios.get(`/category/${categorySlugFormURL}`);
+
+      const categoryName = get(response, 'data.body.category.name');
+
+      setCategoryName(categoryName);
     } catch (error) {
-      return;
+      toast.error('Internal error, try again later');
     }
-  }, [getCategories, categories, categoriesPage, articles, articlesPage, getArticles]);
+  }, [categorySlugFormURL]);
+
+  useEffect(() => {
+    if (categories.length === 0 && categoriesPage === 1) {
+      getCategories();
+    }
+
+    if (articles.length === 0 && articlesPage === 1) {
+      if (categorySlugFormURL) handleQueryParams();
+      getArticles();
+    }
+  }, [
+    getCategories,
+    handleQueryParams,
+    categories,
+    categoriesPage,
+    categorySlugFormURL,
+    articles,
+    articlesPage,
+    getArticles,
+  ]);
 
   return (
     <>
       <Loading isLoading={isLoading} />
       <HomeContainer>
         <Container style={{ maxWidth: '960px' }}>
+          {categoryName ? <Title>Results for {categoryName}</Title> : null}
+
           <CardsContainer style={{ marginTop: '0' }}>
             {articles.length > 0 ? (
               articles.map((article) => {
@@ -136,7 +171,12 @@ export const Home = () => {
                           <p>
                             {article.categories.map((category, i) => {
                               return (
-                                <Link key={category.id} to={`/article/category/${category.slug}`}>
+                                <Link
+                                  key={category.id}
+                                  to="/"
+                                  onClick={handleClickCategoryName}
+                                  title={category.name}
+                                >
                                   {category.name}
                                   {article.categories.length === i + 1 ? '' : ','}
                                 </Link>
@@ -167,9 +207,10 @@ export const Home = () => {
             {categories.map((category) => {
               return (
                 <Link
-                  title={category.name}
                   key={category.id}
-                  to={`/article/category/${category.slug}`}
+                  to="/"
+                  onClick={handleClickCategoryName}
+                  title={category.name}
                 >
                   {category.name}
                 </Link>
