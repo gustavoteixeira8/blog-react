@@ -143,7 +143,14 @@ export const Home = () => {
       <Loading isLoading={isLoading} />
       <HomeContainer>
         <Container style={{ maxWidth: '960px' }}>
-          {categoryName ? <Title>Results for {categoryName}</Title> : null}
+          {categoryName ? (
+            <>
+              <p onClick={handleClickCategoryName} id="removeCategoriesButton">
+                Back
+              </p>
+              <Title>Results for {categoryName}</Title>
+            </>
+          ) : null}
 
           <CardsContainer style={{ marginTop: '0' }}>
             {articles.length > 0 ? (

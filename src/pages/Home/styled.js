@@ -16,6 +16,14 @@ export const HomeContainer = styled.div`
     top: 0;
   }
 
+  #removeCategoriesButton {
+    font-size: 23px;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+
   @media (max-width: 1280px) {
     flex-direction: column;
 
