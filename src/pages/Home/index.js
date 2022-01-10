@@ -171,15 +171,14 @@ export const Home = () => {
                           <p>
                             {article.categories.map((category, i) => {
                               return (
-                                <Link
+                                <span
                                   key={category.id}
-                                  to="/"
                                   onClick={handleClickCategoryName}
                                   title={category.name}
                                 >
                                   {category.name}
                                   {article.categories.length === i + 1 ? '' : ','}
-                                </Link>
+                                </span>
                               );
                             })}
                           </p>
@@ -206,14 +205,9 @@ export const Home = () => {
             <h1>Categories</h1>
             {categories.map((category) => {
               return (
-                <Link
-                  key={category.id}
-                  to="/"
-                  onClick={handleClickCategoryName}
-                  title={category.name}
-                >
+                <p key={category.id} onClick={handleClickCategoryName} title={category.name}>
                   {category.name}
-                </Link>
+                </p>
               );
             })}
             <Button onClick={handleClickLoadMoreCategories}>Load more</Button>

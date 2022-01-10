@@ -27,7 +27,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const CategoryBox = styled.div`
-  a {
+  p {
     color: black;
     display: block;
     font-size: 20px;
@@ -36,9 +36,10 @@ export const CategoryBox = styled.div`
     padding: 5px;
     transition: 300ms all;
     border-radius: 6px;
+    cursor: pointer;
   }
 
-  a:hover {
+  p:hover {
     background-color: ${primaryColor};
     color: white;
   }
@@ -56,13 +57,14 @@ export const ArticleDetails = styled.div`
   font-weight: bold;
   color: ${primaryDarkColor};
 
-  a {
+  span {
     margin-right: 6px;
     text-decoration: none;
     color: ${primaryDarkColor};
+    cursor: pointer;
   }
 
-  a:hover {
+  span:hover {
     color: ${primaryColor};
   }
 `;
