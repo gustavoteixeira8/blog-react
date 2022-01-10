@@ -18,6 +18,7 @@ import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { formatDistanceDate } from '../../utils/formatDate';
 import { useLocation } from 'react-router-dom';
+import { browserHistory } from '../../services/browserHistory';
 
 export const Home = () => {
   const search = useLocation().search;
@@ -97,6 +98,8 @@ export const Home = () => {
   };
 
   const handleClickCategoryName = async (e) => {
+    if (categorySlugFormURL) browserHistory.replace({ search: '' });
+
     const targetTitle = e.target.getAttribute('title');
 
     setArticles([]);
