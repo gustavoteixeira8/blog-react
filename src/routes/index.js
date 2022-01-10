@@ -21,11 +21,13 @@ import { UpdateArticle } from '../pages/UpdateArticle';
 import { DeleteArticle } from '../pages/DeleteArticle';
 import { RecoverArticle } from '../pages/RecoverArticle';
 import { Article } from '../pages/Article';
+import { About } from '../pages/About';
 
 export const AppRoutes = () => {
   return (
     <Switch>
       <MyRoute exact path="/" component={Home} />
+      <MyRoute exact path="/about" component={About} />
       <MyRoute exact path="/login" component={Login} onlyNotLoggedIn={true} />
       <MyRoute exact path="/register" component={Register} onlyLoggedIn={true} onlyAdmin={true} />
       <MyRoute exact path="/email/verify" component={EmailVerification} />
