@@ -97,7 +97,7 @@ export const Article = (props) => {
             <p>
               {article.categories.map((category, i) => {
                 return (
-                  <Link key={category.id} to={`/article/category/${category.slug}`}>
+                  <Link key={category.id} to={`/?cn=${category.slug}`}>
                     {category.name}
                     {article.categories.length === i + 1 ? '' : ','}
                   </Link>
