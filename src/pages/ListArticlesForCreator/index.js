@@ -163,7 +163,7 @@ export const ListArticlesForCreator = () => {
               return (
                 <Card key={article.id} style={{ maxWidth: '800px', margin: '8px auto' }}>
                   <CardImageContainer>
-                    {article.thumbnail ? <img src={article.thumbnail} /> : <p>No image found</p>}
+                    {article.thumbnail ? <img src={article.thumbnail} alt={article.title} /> : null}
                   </CardImageContainer>
 
                   <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
