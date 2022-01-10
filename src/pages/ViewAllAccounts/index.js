@@ -129,16 +129,12 @@ export const ViewAllAccounts = () => {
 
                   <CardText style={{ fontSize: '18px' }}>
                     <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                      <li title={user.email}>Email: {user.email}</li>
-                      <li title={user.isAdmin ? 'YES' : 'NO'}>
-                        Is admin: {user.isAdmin ? 'YES' : 'NO'}
-                      </li>
-                      <li title={user.isEmailVerified ? 'YES' : 'NO'}>
-                        Email is verified: {user.isEmailVerified ? 'YES' : 'NO'}
-                      </li>
-                      <li title={user.createdAt}>Created at: {formatDate(user.createdAt)}</li>
-                      <li title={user.updatedAt}>Last update:{formatDate(user.updatedAt)}</li>
-                      <li title={user.deletedAt}>
+                      <li>Email: {user.email}</li>
+                      <li>Is admin: {user.isAdmin ? 'YES' : 'NO'}</li>
+                      <li>Email is verified: {user.isEmailVerified ? 'YES' : 'NO'}</li>
+                      <li>Created at: {formatDate(user.createdAt)}</li>
+                      <li>Last update:{formatDate(user.updatedAt)}</li>
+                      <li>
                         Deleted at: {user.deletedAt ? formatDate(user.updatedAt) : 'NOT DELETED'}
                       </li>
                     </ul>
