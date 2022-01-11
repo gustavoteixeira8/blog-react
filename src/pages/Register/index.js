@@ -14,6 +14,7 @@ import {
   validateUsername,
 } from '../../validations/index';
 import { get } from 'lodash';
+import { HelmetTags } from '../../components/Helmet';
 
 export const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -67,6 +68,8 @@ export const Register = () => {
 
   return (
     <>
+      <HelmetTags title="Register" />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '800px' }}>
         <Title>Register</Title>

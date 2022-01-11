@@ -4,6 +4,7 @@ import { Container } from '../../styles/globalStyles';
 import { editorConfig } from '../../config/editor';
 import { generateSlug } from '../../utils/generateSlug';
 import { Title } from '../../components/Title';
+import { HelmetTags } from '../../components/Helmet';
 import { Form, FormFile } from '../../components/Form';
 import { Button } from '../../components/Button';
 import { Loading } from '../../components/Loading';
@@ -211,6 +212,8 @@ export const CreateArticle = () => {
 
   return (
     <>
+      <HelmetTags title="Post a new article" />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '1280px' }}>
         {!isArticleLayout ? (

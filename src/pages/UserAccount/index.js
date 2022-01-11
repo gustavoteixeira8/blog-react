@@ -11,6 +11,7 @@ import * as authActions from '../../store/modules/auth/actions';
 import * as userActions from '../../store/modules/user/actions';
 import { validateEmail, validateFullName, validateUsername } from '../../validations/index';
 import { toast } from 'react-toastify';
+import { HelmetTags } from '../../components/Helmet';
 
 export const UserAccount = () => {
   const { data } = useSelector((state) => state.user);
@@ -59,6 +60,8 @@ export const UserAccount = () => {
 
   return (
     <>
+      <HelmetTags title="My account" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <Title>Account</Title>

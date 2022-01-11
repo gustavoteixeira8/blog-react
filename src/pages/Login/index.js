@@ -9,6 +9,7 @@ import { Button } from '../../components/Button';
 import { toast } from 'react-toastify';
 import { Loading } from '../../components/Loading';
 import { Link } from 'react-router-dom';
+import { HelmetTags } from '../../components/Helmet';
 
 export const Login = (props) => {
   const [login, setLogin] = useState('');
@@ -30,6 +31,8 @@ export const Login = (props) => {
 
   return (
     <>
+      <HelmetTags title="Login" />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '800px' }}>
         <Title>Login</Title>

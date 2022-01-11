@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import { browserHistory } from '../../services/browserHistory';
 import { get } from 'lodash';
+import { HelmetTags } from '../../components/Helmet';
 
 export const DeleteArticle = (props) => {
   const articleSlug = get(props, 'match.params.articleSlug', '');
@@ -67,6 +68,8 @@ export const DeleteArticle = (props) => {
 
   return (
     <>
+      <HelmetTags title="Delete article" />
+
       <Loading isLoading={isLoading} />
 
       <Container>

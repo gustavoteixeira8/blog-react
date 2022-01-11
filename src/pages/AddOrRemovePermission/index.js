@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Container } from '../../styles/globalStyles';
 import { Title } from '../../components/Title';
+import { HelmetTags } from '../../components/Helmet';
 import { Form } from '../../components/Form';
 import { Loading } from '../../components/Loading';
 import { Button } from '../../components/Button';
@@ -73,6 +74,8 @@ export const AddOrRemovePermission = (props) => {
 
   return (
     <>
+      <HelmetTags title="Permission" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <Title>Permission</Title>

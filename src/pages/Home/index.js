@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Loading } from '../../components/Loading';
 import { Title } from '../../components/Title';
 import { Button } from '../../components/Button';
+import { HelmetTags } from '../../components/Helmet';
 import {
   Card,
   CardContext,
@@ -145,6 +146,7 @@ export const Home = () => {
 
   return (
     <>
+      <HelmetTags title="Home" />
       <Loading isLoading={isLoading} />
       <HomeContainer>
         <Container style={{ maxWidth: '960px' }}>

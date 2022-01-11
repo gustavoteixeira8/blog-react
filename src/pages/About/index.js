@@ -4,25 +4,30 @@ import { AboutContainer } from './styled';
 import { Title } from '../../components/Title';
 import { FaGithub, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { HelmetTags } from '../../components/Helmet';
 
 export const About = () => {
   return (
-    <Container>
-      <AboutContainer>
-        <div className="github-about">
-          <Title>GitHub</Title>
-          <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
-            <FaGithub className="github-about-icon" />
-          </Link>
-        </div>
+    <>
+      <HelmetTags title="About" />
 
-        <div className="twitter-about">
-          <Title>Twitter</Title>
-          <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
-            <FaTwitter className="twitter-about-icon" />
-          </Link>
-        </div>
-      </AboutContainer>
-    </Container>
+      <Container>
+        <AboutContainer>
+          <div className="github-about">
+            <Title>GitHub</Title>
+            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
+              <FaGithub className="github-about-icon" />
+            </Link>
+          </div>
+
+          <div className="twitter-about">
+            <Title>Twitter</Title>
+            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
+              <FaTwitter className="twitter-about-icon" />
+            </Link>
+          </div>
+        </AboutContainer>
+      </Container>
+    </>
   );
 };

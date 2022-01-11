@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import { Container } from '../../styles/globalStyles';
 import { Loading } from '../../components/Loading';
+import { HelmetTags } from '../../components/Helmet';
 import { browserHistory } from '../../services/browserHistory';
 import { Title } from '../../components/Title';
 import { formatDistanceDate } from '../../utils/formatDate';
@@ -11,6 +12,7 @@ import { ArticleContainer, ArticleDetails, TextContainer, ThumbnailContainer } f
 import 'prism-themes/themes/prism-vsc-dark-plus.min.css';
 import Prism from 'prismjs';
 import { Link } from 'react-router-dom';
+import { appConfig } from '../../config/app';
 
 export const Article = (props) => {
   useLayoutEffect(() => Prism.highlightAll(false));
@@ -69,8 +71,34 @@ export const Article = (props) => {
     defineArticleText();
   }, [article, getArticle, defineArticleText]);
 
+  const ogMetaTags = {
+    title: article.title,
+    type: 'article',
+    image: article.thumbnail,
+    imageUrl: article.thumbnail,
+    imageAlt: article.title,
+    url: `${appConfig.appUrl}/article/${article.slug}`,
+  };
+
+  const twitterMetaTags = {
+    title: article.title,
+    type: 'article',
+    image: article.thumbnail,
+    imageUrl: article.thumbnail,
+    imageAlt: article.title,
+    url: `${appConfig.appUrl}/article/${article.slug}`,
+  };
+
   return (
     <>
+      <HelmetTags
+        title={article.title}
+        ogTags={ogMetaTags}
+        twitterTags={twitterMetaTags}
+        description={article.title}
+        keywords={article.categories.map((category) => category.name).join(', ')}
+      />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '960px' }}>
         <ArticleContainer>

@@ -11,6 +11,7 @@ import { Title } from '../../components/Title';
 import { Loading } from '../../components/Loading';
 import { browserHistory } from '../../services/browserHistory';
 import { DeleteCategoryBox } from './styled';
+import { HelmetTags } from '../../components/Helmet';
 
 export const UpdateAndDeleteCategory = (props) => {
   const categorySlug = get(props, 'match.params.categorySlug', '');
@@ -98,6 +99,8 @@ export const UpdateAndDeleteCategory = (props) => {
 
   return (
     <>
+      <HelmetTags title={isUpdateLayout ? 'Update category' : 'Delete category'} />
+
       <Loading isLoading={isLoading} />
 
       <Container>

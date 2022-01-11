@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as authAction from '../../store/modules/auth/actions';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { get } from 'lodash';
+import { HelmetTags } from '../../components/Helmet';
 
 export const UpdatePassword = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -96,6 +97,8 @@ export const UpdatePassword = () => {
 
   return (
     <>
+      <HelmetTags title="Update password" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <Title>{isLoggedIn ? 'Update password' : 'Forgot password'}</Title>

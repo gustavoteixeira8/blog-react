@@ -10,32 +10,35 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Footer } from './components/Footer';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App = function () {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <Router history={browserHistory} location={browserHistory.location}>
-          <Wrapper>
-            <GlobalEvents />
-            <Header />
-            <GlobalStyles />
-            <AppRoutes />
-            <ToastContainer
-              autoClose={5000}
-              className="toast-container"
-              pauseOnFocusLoss={true}
-              theme="dark"
-              toastClassName={Math.random()}
-              closeOnClick
-              limit={6}
-              closeButton
-              draggable
-            />
-          </Wrapper>
+        <HelmetProvider>
+          <Router history={browserHistory} location={browserHistory.location}>
+            <Wrapper>
+              <GlobalEvents />
+              <Header />
+              <GlobalStyles />
+              <AppRoutes />
+              <ToastContainer
+                autoClose={5000}
+                className="toast-container"
+                pauseOnFocusLoss={true}
+                theme="dark"
+                toastClassName={Math.random()}
+                closeOnClick
+                limit={6}
+                closeButton
+                draggable
+              />
+            </Wrapper>
 
-          <Footer />
-        </Router>
+            <Footer />
+          </Router>
+        </HelmetProvider>
       </PersistGate>
     </Provider>
   );

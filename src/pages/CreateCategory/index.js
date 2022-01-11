@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import { Form } from '../../components/Form';
+import { HelmetTags } from '../../components/Helmet';
 import { validateCategoryName } from '../../validations';
 import { Container } from '../../styles/globalStyles';
 import { Button } from '../../components/Button';
@@ -49,6 +50,8 @@ export const CreateCategory = () => {
 
   return (
     <>
+      <HelmetTags title="Create new category" />
+
       <Loading isLoading={isLoading} />
 
       <Container>

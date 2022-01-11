@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import { browserHistory } from '../../services/browserHistory';
 import { get } from 'lodash';
+import { HelmetTags } from '../../components/Helmet';
 
 export const RecoverArticle = (props) => {
   const articleSlug = get(props, 'match.params.articleSlug', '');
@@ -68,6 +69,8 @@ export const RecoverArticle = (props) => {
 
   return (
     <>
+      <HelmetTags title="Recover article" />
+
       <Loading isLoading={isLoading} />
 
       <Container>

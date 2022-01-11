@@ -6,6 +6,7 @@ import { Button } from '../../components/Button';
 import { Loading } from '../../components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/modules/user/actions';
+import { HelmetTags } from '../../components/Helmet';
 
 export const DeleteAccount = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export const DeleteAccount = () => {
 
   return (
     <>
+      <HelmetTags title="Delete account" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <DeleteAccountBox>

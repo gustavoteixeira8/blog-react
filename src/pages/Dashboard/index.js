@@ -5,66 +5,71 @@ import { Button } from '../../components/Button';
 import { Container } from '../../styles/globalStyles';
 import { ContainerUtilityLinks, UtilityLinks } from './styled';
 import { Title } from '../../components/Title';
+import { HelmetTags } from '../../components/Helmet';
 
 export const Dashboard = () => {
   return (
-    <Container style={{ maxWidth: '1280px' }}>
-      <Title>Dashboard</Title>
+    <>
+      <HelmetTags title="Dashboard" />
 
-      <CardsContainer>
-        <Card>
-          <CardTitle>Articles</CardTitle>
-          <CardText>50</CardText>
-        </Card>
+      <Container style={{ maxWidth: '1280px' }}>
+        <Title>Dashboard</Title>
 
-        <Card>
-          <CardTitle>Categories</CardTitle>
-          <CardText>15</CardText>
-        </Card>
+        <CardsContainer>
+          <Card>
+            <CardTitle>Articles</CardTitle>
+            <CardText>50</CardText>
+          </Card>
 
-        <Card>
-          <CardTitle>Users</CardTitle>
-          <CardText>3</CardText>
-        </Card>
-      </CardsContainer>
+          <Card>
+            <CardTitle>Categories</CardTitle>
+            <CardText>15</CardText>
+          </Card>
 
-      <ContainerUtilityLinks>
-        <UtilityLinks>
-          <Title style={{ fontSize: '40px' }}>Article</Title>
+          <Card>
+            <CardTitle>Users</CardTitle>
+            <CardText>3</CardText>
+          </Card>
+        </CardsContainer>
 
-          <Link to="/my/article" className="utility-link">
-            <Button type="button">My articles</Button>
-          </Link>
+        <ContainerUtilityLinks>
+          <UtilityLinks>
+            <Title style={{ fontSize: '40px' }}>Article</Title>
 
-          <Link to="/article/new" className="utility-link">
-            <Button type="button">Post a new article</Button>
-          </Link>
-        </UtilityLinks>
+            <Link to="/my/article" className="utility-link">
+              <Button type="button">My articles</Button>
+            </Link>
 
-        <UtilityLinks>
-          <Title style={{ fontSize: '40px' }}>Category</Title>
+            <Link to="/article/new" className="utility-link">
+              <Button type="button">Post a new article</Button>
+            </Link>
+          </UtilityLinks>
 
-          <Link to="/category" className="utility-link">
-            <Button type="button">Categories</Button>
-          </Link>
+          <UtilityLinks>
+            <Title style={{ fontSize: '40px' }}>Category</Title>
 
-          <Link to="/category/new" className="utility-link">
-            <Button type="button">Create a new category</Button>
-          </Link>
-        </UtilityLinks>
+            <Link to="/category" className="utility-link">
+              <Button type="button">Categories</Button>
+            </Link>
 
-        <UtilityLinks>
-          <Title style={{ fontSize: '40px' }}>Admin</Title>
+            <Link to="/category/new" className="utility-link">
+              <Button type="button">Create a new category</Button>
+            </Link>
+          </UtilityLinks>
 
-          <Link to="/account/all" className="utility-link">
-            <Button type="button">View All Users</Button>
-          </Link>
+          <UtilityLinks>
+            <Title style={{ fontSize: '40px' }}>Admin</Title>
 
-          <Link to="/register" className="utility-link">
-            <Button type="button">Register a new user</Button>
-          </Link>
-        </UtilityLinks>
-      </ContainerUtilityLinks>
-    </Container>
+            <Link to="/account/all" className="utility-link">
+              <Button type="button">View All Users</Button>
+            </Link>
+
+            <Link to="/register" className="utility-link">
+              <Button type="button">Register a new user</Button>
+            </Link>
+          </UtilityLinks>
+        </ContainerUtilityLinks>
+      </Container>
+    </>
   );
 };

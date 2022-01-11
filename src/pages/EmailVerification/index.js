@@ -11,6 +11,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/modules/user/actions';
 import { get } from 'lodash';
+import { HelmetTags } from '../../components/Helmet';
 
 export const EmailVerification = () => {
   const [email, setEmail] = useState('');
@@ -74,6 +75,8 @@ export const EmailVerification = () => {
 
   return (
     <>
+      <HelmetTags title="Email verification" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <Title>

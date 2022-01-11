@@ -8,6 +8,7 @@ import axios from '../../services/axios';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { HelmetTags } from '../../components/Helmet';
 
 export const Categories = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +61,7 @@ export const Categories = () => {
 
   return (
     <>
+      <HelmetTags title="Categories" />
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '1280px' }}>
         <Title>Categories</Title>

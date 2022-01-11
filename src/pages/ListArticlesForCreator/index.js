@@ -16,6 +16,7 @@ import axios from '../../services/axios';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { formatDate } from '../../utils/formatDate';
+import { HelmetTags } from '../../components/Helmet';
 
 export const ListArticlesForCreator = () => {
   const [articles, setArticles] = useState([]);
@@ -102,6 +103,8 @@ export const ListArticlesForCreator = () => {
 
   return (
     <>
+      <HelmetTags title="My articles" />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '1280px' }}>
         <Title style={{ margin: '0 0 40px 0' }}>My articles</Title>

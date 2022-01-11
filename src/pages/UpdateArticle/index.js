@@ -19,6 +19,7 @@ import {
   validateArticleTitle,
   validateNumberOfCategories,
 } from '../../validations';
+import { HelmetTags } from '../../components/Helmet';
 
 export const UpdateArticle = (props) => {
   const articleSlug = get(props, 'match.params.articleSlug', '');
@@ -240,6 +241,8 @@ export const UpdateArticle = (props) => {
 
   return (
     <>
+      <HelmetTags title="Update article" />
+
       <Loading isLoading={isLoading} />
       <Container style={{ maxWidth: '1280px' }}>
         {!isArticleLayout ? (

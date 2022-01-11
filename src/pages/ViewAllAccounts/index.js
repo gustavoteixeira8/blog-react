@@ -10,6 +10,7 @@ import axios from '../../services/axios';
 import { formatDate } from '../../utils/formatDate';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
+import { HelmetTags } from '../../components/Helmet';
 
 export const ViewAllAccounts = () => {
   const [isAdmin, setIsAdmin] = useState();
@@ -87,6 +88,8 @@ export const ViewAllAccounts = () => {
 
   return (
     <>
+      <HelmetTags title="View all accounts" />
+
       <Loading isLoading={isLoading} />
       <Container>
         <Title style={{ margin: '0 0 40px 0' }}>Search an account</Title>
