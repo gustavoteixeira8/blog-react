@@ -31,7 +31,7 @@ export const Header = () => {
         Dashboard
       </Link>
 
-      <Link to="/" title="Logout" onClick={handleLogoutClick}>
+      <Link to="/login" title="Logout" onClick={handleLogoutClick}>
         Logout
       </Link>
     </>
