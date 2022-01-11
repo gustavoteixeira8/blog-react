@@ -27,4 +27,13 @@ export const AboutContainer = styled.div`
   .github-about-icon:hover {
     color: ${primaryDarkColor};
   }
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+
+    .github-about,
+    .twitter-about {
+      margin: 30px auto;
+    }
+  }
 `;

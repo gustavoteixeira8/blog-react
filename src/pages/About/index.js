@@ -15,14 +15,14 @@ export const About = () => {
         <AboutContainer>
           <div className="github-about">
             <Title>GitHub</Title>
-            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
+            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }} target="_blank">
               <FaGithub className="github-about-icon" />
             </Link>
           </div>
 
           <div className="twitter-about">
             <Title>Twitter</Title>
-            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }}>
+            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }} target="_blank">
               <FaTwitter className="twitter-about-icon" />
             </Link>
           </div>
