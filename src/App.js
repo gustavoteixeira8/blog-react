@@ -11,13 +11,17 @@ import { store, persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Footer } from './components/Footer';
 import { HelmetProvider } from 'react-helmet-async';
+import { googleAnalyticsSetup, PageRoutesTracking } from './config/googleAnalytics';
 
 const App = function () {
+  googleAnalyticsSetup();
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <HelmetProvider>
           <Router history={browserHistory} location={browserHistory.location}>
+            <PageRoutesTracking />
             <Wrapper>
               <GlobalEvents />
               <Header />
