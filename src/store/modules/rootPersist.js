@@ -1,7 +1,7 @@
 import storage from 'redux-persist/lib/storage/session';
 import { persistReducer } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
-// import { generateRandomString } from '../../utils/generateRandomString';
+import { getSecretKey } from '../../utils/getSecretKey';
 
 export const rootPersist = (reducers) => {
   const persistedReducers = persistReducer(
@@ -11,7 +11,7 @@ export const rootPersist = (reducers) => {
       whitelist: ['auth', 'user'],
       transforms: [
         encryptTransform({
-          secretKey: 'generateRandomString()',
+          secretKey: getSecretKey(),
           onError() {
             dispatchEvent('storage');
           },
