@@ -91,7 +91,7 @@ export const ViewAllAccounts = () => {
       <HelmetTags title="View all accounts" />
 
       <Loading isLoading={isLoading} />
-      <Container>
+      <Container style={{ maxWidth: '1280px' }}>
         <Title style={{ margin: '0 0 40px 0' }}>Search an account</Title>
         <Form onSubmit={handleSubmit}>
           <label htmlFor="fullName">
