@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
 import * as authActions from '../../store/modules/auth/actions';
+import { browserHistory } from '../../services/browserHistory';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,11 @@ export const Header = () => {
 
     const mobileMenuBox = document.querySelector('.mobile-menu-box');
     mobileMenuBox.style.top = isOpenMobileMenu ? '60px' : '-100%';
+
+    browserHistory.listen(() => {
+      setIsOpenMobileMenu(true);
+      mobileMenuBox.style.top = '-100%';
+    });
   };
 
   const handleLogoutClick = () => {
