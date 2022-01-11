@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start:dev": "react-scripts start",
-    "start:prod": "serve -s build",
+    "start:prod": "serve -p 4000 -s build",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
