@@ -49,12 +49,12 @@ export const Article = (props) => {
 
       if (status >= 400 && status <= 499) {
         errors.map((err, i) => toast.error(err, { toastId: i }));
-        browserHistory.push('/');
       } else {
         toast.error('Internal error, try again later');
       }
 
       setIsLoading(false);
+      browserHistory.push('/');
     }
   }, [setIsLoading, articleSlug]);
 
