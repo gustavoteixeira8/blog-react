@@ -1,50 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { appConfig } from '../../config/app';
 
-export const HelmetTags = ({ title, description, keywords, ogTags, twitterTags }) => {
+export const HelmetTags = ({ title, description, keywords, cardTags }) => {
   return (
     <Helmet>
       <meta name="author" content="Gustavo Teixeira" />
       <title>Blog - {title}</title>
-
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={cardTags.url} />
+      <meta property="og:title" content={cardTags.title} />
+      <meta property="og:description" content={cardTags.description} />
+      <meta property="og:image" content={cardTags.image} />
+      <meta property="og:site_name" content="Gustavo Teixeira" />
 
-      <meta property="og:title" content={ogTags.title} />
-      <meta property="og:description" content={ogTags.description} />
-      <meta property="og:site_name" content={appConfig.appUrl} />
-      <meta property="og:type" content={ogTags.type} />
-      <meta property="og:image" content={ogTags.image} />
-      <meta property="og:image:url" content={ogTags.imageUrl} />
-      <meta property="og:image:alt" content={ogTags.imageAlt} />
-      <meta property="og:url" content={ogTags.url} />
-
-      <meta name="twitter:site" content={twitterTags.site} />
-      <meta name="twitter:title" content={twitterTags.title} />
-      <meta name="twitter:description" content={twitterTags.description} />
-      <meta name="twitter:creator" content={twitterTags.creator} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={twitterTags.url} />
-      <meta name="twitter:image" content={twitterTags.image} />
-      <meta name="twitter:image:alt" content={twitterTags.imageAlt} />
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={cardTags.url} />
+      <meta property="twitter:title" content={cardTags.title} />
+      <meta property="twitter:description" content={cardTags.description} />
+      <meta property="twitter:image" content={cardTags.image} />
+      <meta name="twitter:creator" content="@gustvot8" />
     </Helmet>
   );
 };
 
 HelmetTags.defaultProps = {
   title: '',
-  ogTags: {},
-  twitterTags: {},
+  cardTags: {
+    url: `https://${window.location.host}`,
+    title: 'Gustavo Teixeira',
+    description: '',
+    image: '',
+  },
   description: '',
   keywords: '',
 };
 
 HelmetTags.propTypes = {
   title: PropTypes.string,
-  ogTags: PropTypes.object,
-  twitterTags: PropTypes.object,
+  cardTags: PropTypes.object,
   description: PropTypes.string,
   keywords: PropTypes.string,
 };

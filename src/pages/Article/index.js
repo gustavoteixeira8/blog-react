@@ -72,29 +72,17 @@ export const Article = (props) => {
   }, [article, getArticle, defineArticleText]);
 
   const ogMetaTags = {
-    title: article.title,
-    type: 'article',
-    image: article.thumbnail,
-    imageUrl: article.thumbnail,
-    imageAlt: article.title,
     url: `${appConfig.appUrl}/article/${article.slug}`,
-  };
-
-  const twitterMetaTags = {
     title: article.title,
-    type: 'article',
+    description: article.title,
     image: article.thumbnail,
-    imageUrl: article.thumbnail,
-    imageAlt: article.title,
-    url: `${appConfig.appUrl}/article/${article.slug}`,
   };
 
   return (
     <>
       <HelmetTags
         title={article.title}
-        ogTags={ogMetaTags}
-        twitterTags={twitterMetaTags}
+        cardTags={ogMetaTags}
         description={article.title}
         keywords={article.categories.map((category) => category.name).join(', ')}
       />

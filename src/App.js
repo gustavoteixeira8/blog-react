@@ -17,9 +17,9 @@ const App = function () {
   googleAnalyticsSetup();
 
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <HelmetProvider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
           <Router history={browserHistory} location={browserHistory.location}>
             <PageRoutesTracking />
             <Wrapper>
@@ -42,9 +42,9 @@ const App = function () {
 
             <Footer />
           </Router>
-        </HelmetProvider>
-      </PersistGate>
-    </Provider>
+        </PersistGate>
+      </Provider>
+    </HelmetProvider>
   );
 };
 
