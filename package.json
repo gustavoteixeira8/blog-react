@@ -2,6 +2,7 @@
   "name": "react-base",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gustavo.gq/",
   "dependencies": {
     "@tinymce/tinymce-react": "3.13.0",
     "axios": "0.24.0",
