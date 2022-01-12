@@ -1,18 +1,21 @@
 import ReactGA from 'react-ga';
-import { get } from 'lodash';
+import { browserHistory } from '../services/browserHistory';
 
 export const googleAnalyticsSetup = () => {
   ReactGA.initialize('UA-216817757-1');
 };
 
-export const PageRoutesTracking = (props) => {
-  const pathname = get(props, 'match.path', '*');
-  let pathView;
+export const pageRoutesTracking = () => {
+  browserHistory.listen((obj) => {
+    const pathname = `${obj.pathname}${obj.search}`;
 
-  if (pathname === '*') pathView = 'not-found';
-  else pathView = pathname;
+    let pathView;
 
-  ReactGA.pageview(pathView);
+    if (pathname === '*') pathView = 'not-found';
+    else pathView = pathname;
+
+    ReactGA.pageview(pathView);
+  });
 
   return null;
 };
