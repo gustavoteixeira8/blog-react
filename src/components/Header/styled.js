@@ -10,12 +10,16 @@ export const Nav = styled.nav`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
-  h1 {
+  h1.logo {
     margin-right: auto;
     color: white;
+
+    a {
+      color: white;
+    }
   }
 
-  a {
+  a.nav-link {
     color: white;
     font-size: 17px;
     margin: 0 15px;
@@ -23,7 +27,7 @@ export const Nav = styled.nav`
     text-decoration: none;
   }
 
-  a:hover {
+  a.nav-link:hover {
     border-bottom: 1px solid white;
   }
 

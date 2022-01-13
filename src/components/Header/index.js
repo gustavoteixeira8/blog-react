@@ -29,15 +29,15 @@ export const Header = () => {
 
   const loggedInLinks = (
     <>
-      <Link to="/account" title="My account">
+      <Link className="nav-link" to="/account" title="My account">
         My account
       </Link>
 
-      <Link to="/dashboard" title="Dashboard">
+      <Link className="nav-link" to="/dashboard" title="Dashboard">
         Dashboard
       </Link>
 
-      <Link to="/login" title="Logout" onClick={handleLogoutClick}>
+      <Link className="nav-link" to="/login" title="Logout" onClick={handleLogoutClick}>
         Logout
       </Link>
     </>
@@ -45,10 +45,10 @@ export const Header = () => {
 
   const notLoggedInLinks = (
     <>
-      <Link to="/about" title="About">
+      <Link className="nav-link" to="/about" title="About">
         About
       </Link>
-      <Link to="/login" title="Login">
+      <Link className="nav-link" to="/login" title="Login">
         Login
       </Link>
     </>
@@ -57,10 +57,12 @@ export const Header = () => {
   return (
     <>
       <Nav>
-        <h1>Blog</h1>
+        <h1 className="logo">
+          <Link to="/">Gustavo Teixeira</Link>
+        </h1>
 
         <div className="desktop-menu">
-          <Link to="/" title="Home">
+          <Link className="nav-link" to="/" title="Home">
             Home
           </Link>
 
@@ -71,7 +73,7 @@ export const Header = () => {
           <FaBars className="menu-bars" onClick={handleMenuMobileClick} />
 
           <div className="mobile-menu-box">
-            <Link to="/" title="Home">
+            <Link className="nav-link" to="/" title="Home">
               Home
             </Link>
 
