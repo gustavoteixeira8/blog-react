@@ -83,6 +83,7 @@ export const Article = (props) => {
       <HelmetTags
         title={article.title}
         cardTags={ogMetaTags}
+        metaTitle={article.title}
         description={article.title}
         keywords={article.categories.map((category) => category.name).join(', ')}
       />
