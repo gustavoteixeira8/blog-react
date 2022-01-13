@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 
-export const HelmetTags = ({ title, description, keywords, cardTags }) => {
+export const HelmetTags = ({ title, description, keywords, metaTitle, cardTags }) => {
   return (
     <Helmet>
       <meta name="author" content="Gustavo Teixeira" />
       <title>Blog - {title}</title>
+      <meta name="title" content={metaTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content="website" />
@@ -31,10 +32,11 @@ HelmetTags.defaultProps = {
   cardTags: {
     url: `https://${window.location.host}`,
     title: 'Gustavo Teixeira',
-    description: '',
+    description: 'Blog made for testing',
     image: '',
   },
-  description: '',
+  metaTitle: 'Blog made for testing',
+  description: 'Blog made for testing',
   keywords: '',
 };
 
@@ -43,4 +45,5 @@ HelmetTags.propTypes = {
   cardTags: PropTypes.object,
   description: PropTypes.string,
   keywords: PropTypes.string,
+  metaTitle: PropTypes.string,
 };
