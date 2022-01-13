@@ -6,7 +6,7 @@ export const HelmetTags = ({ title, description, keywords, metaTitle, cardTags }
   return (
     <Helmet>
       <meta name="author" content="Gustavo Teixeira" />
-      <title>Blog - {title}</title>
+      <title>Gustavo Teixeira {title ? ` - ${title}` : ''}</title>
       <meta name="title" content={metaTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
@@ -32,11 +32,11 @@ HelmetTags.defaultProps = {
   cardTags: {
     url: `https://${window.location.host}`,
     title: 'Gustavo Teixeira',
-    description: 'Blog made for testing',
+    description: `Gustavo Teixeira's personal website`,
     image: '',
   },
-  metaTitle: 'Blog made for testing',
-  description: 'Blog made for testing',
+  metaTitle: `Gustavo Teixeira's personal website`,
+  description: `Gustavo Teixeira's personal website`,
   keywords: '',
 };
 
