@@ -22,7 +22,7 @@ export const About = () => {
 
           <div className="twitter-about">
             <Title>Twitter</Title>
-            <Link to={{ pathname: 'https://github.com/gustavoteixeira8' }} target="_blank">
+            <Link to={{ pathname: 'https://twitter.com/gustvot8' }} target="_blank">
               <FaTwitter className="twitter-about-icon" />
             </Link>
           </div>

@@ -19,7 +19,7 @@ export const Footer = () => {
 
         <Link
           className="footer-links twitter-icon"
-          to={{ pathname: 'https://twitter.com' }}
+          to={{ pathname: 'https://twitter.com/gustvot8' }}
           target="_blank"
         >
           <FaTwitter />
