@@ -54,7 +54,7 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
 
 export const deleteUserLoggedInRequest = function* () {
   try {
-    const response = yield call(axios.delete, '/use');
+    const response = yield call(axios.delete, '/user');
 
     const message = get(response, 'data.body.message', 'Your user was deleted successfully');
 
