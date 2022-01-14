@@ -14,6 +14,7 @@ export const pageRoutesTracking = () => {
     if (pathname === '*') pathView = 'not-found';
     else pathView = pathname;
 
+    ReactGA.set({ page: pathView });
     ReactGA.pageview(pathView);
   });
 
