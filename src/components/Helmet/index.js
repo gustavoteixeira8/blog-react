@@ -6,7 +6,7 @@ export const HelmetTags = ({ title, description, keywords, metaTitle, cardTags }
   return (
     <Helmet>
       <meta name="author" content="Gustavo Teixeira" />
-      <title>Gustavo Teixeira {title ? ` - ${title}` : ''}</title>
+      <title>{title ? `${title} - ` : ''}Gustavo Teixeira</title>
       <meta name="title" content={metaTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
