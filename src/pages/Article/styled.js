@@ -8,13 +8,18 @@ export const ArticleContainer = styled.div`
 `;
 
 export const TextContainer = styled.article`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   width: 100%;
   margin: 30px auto;
   word-spacing: 1px;
   overflow: hidden;
-  line-height: 33px;
+  line-height: 29px;
   white-space: pre-wrap;
+
+  ul,
+  ol {
+    list-style-position: inside !important;
+  }
 
   pre[class*='language-'] {
     border-radius: 5px;
