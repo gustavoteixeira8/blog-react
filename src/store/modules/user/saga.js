@@ -43,10 +43,9 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
 
     if (status >= 400 && status <= 499) {
       errors.map((error) => toast.error(error, { toastId: Math.random() }));
-      return;
+    } else {
+      toast.error('Internal error, try again later');
     }
-
-    toast.error('Internal error, try again later');
 
     yield put(userActions.createFetchUserLoggedInError());
   }
@@ -61,16 +60,17 @@ export const deleteUserLoggedInRequest = function* () {
     toast.success(message);
 
     yield put(authActions.createLogoutRequest());
+
+    browserHistory.push('/login');
   } catch (error) {
     const errors = get(error, 'response.data.body.errors', []);
     const status = get(error, 'response.data.status', 500);
 
     if (status >= 400 && status <= 499) {
       errors.map((error) => toast.error(error, { toastId: Math.random() }));
-      return;
+    } else {
+      toast.error('Internal error, try again later');
     }
-
-    toast.error('Internal error, try again later');
 
     yield put(userActions.createFetchUserLoggedInError());
 
