@@ -49,7 +49,7 @@ export const UpdateArticle = (props) => {
         setIsLoading(true);
         const response = await axios.get('/category', { params: { page, perPage, order } });
 
-        const categoriesStored = get(response, 'data.body.data', []);
+        const categoriesStored = get(response, 'data.body.data.data', []);
 
         const slicedCategories = categories.slice(start, end);
 
@@ -70,9 +70,9 @@ export const UpdateArticle = (props) => {
   const getArticle = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/user/me/article/${articleSlug}`);
+      const response = await axios.get(`/article/${articleSlug}`);
 
-      const articleStored = get(response, 'data.body.article', null);
+      const articleStored = get(response, 'data.body.data', null);
 
       setArticle(articleStored);
       setTitle(articleStored.title);
@@ -82,7 +82,7 @@ export const UpdateArticle = (props) => {
       setThumbnailURL(articleStored.thumbnail);
       setIsLoading(false);
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
@@ -137,10 +137,10 @@ export const UpdateArticle = (props) => {
       return;
     }
 
-    if (choosedCategories.length > 4) {
-      toast.error('Maximum of categories are 5');
-      return;
-    }
+    // if (choosedCategories.length > 4) {
+    //   toast.error('Maximum of categories are 5');
+    //   return;
+    // }
 
     const newCategories = [...choosedCategories];
     newCategories.push({ categoryName, categoryId });
@@ -169,7 +169,7 @@ export const UpdateArticle = (props) => {
         },
       });
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
@@ -206,14 +206,13 @@ export const UpdateArticle = (props) => {
         categoriesId,
       });
 
-      const message = get(response, 'data.body.message', 'Your article was updated successfully');
+      const message = get(response, 'data.body.message', ['Your article was updated successfully']);
 
       if (article.thumbnail !== thumbnailURL) await submitThumbnail();
 
-      toast.success(message);
-      setIsLoading(false);
+      toast.success(message[0]);
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
@@ -221,6 +220,7 @@ export const UpdateArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
+    } finally {
       setIsLoading(false);
     }
   };

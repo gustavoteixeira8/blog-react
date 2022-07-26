@@ -24,7 +24,7 @@ export const Categories = () => {
         setIsLoading(true);
         const response = await axios.get('/category', { params: { page, perPage, order } });
 
-        const categoriesStored = get(response, 'data.body.data', []);
+        const categoriesStored = get(response, 'data.body.data.data', []);
 
         const slicedCategories = categories.slice(start, end);
 

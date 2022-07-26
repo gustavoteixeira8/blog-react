@@ -39,12 +39,11 @@ export const Article = (props) => {
       setIsLoading(true);
       const response = await axios.get(`/article/${articleSlug}`);
 
-      const articleStored = get(response, 'data.body.article', null);
+      const articleStored = get(response, 'data.body.data', null);
 
       setArticle(articleStored);
-      setIsLoading(false);
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
@@ -52,9 +51,9 @@ export const Article = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-
-      setIsLoading(false);
       browserHistory.push('/');
+    } finally {
+      setIsLoading(false);
     }
   }, [setIsLoading, articleSlug]);
 
@@ -74,7 +73,7 @@ export const Article = (props) => {
   const ogMetaTags = {
     url: `${appConfig.appUrl}/article/${article.slug}`,
     title: article.title,
-    description: article.title,
+    description: article.text,
     image: article.thumbnail,
   };
 
@@ -84,7 +83,7 @@ export const Article = (props) => {
         title={article.title}
         cardTags={ogMetaTags}
         metaTitle={article.title}
-        description={article.title}
+        description={article.text}
         keywords={article.categories.map((category) => category.name).join(', ')}
       />
 

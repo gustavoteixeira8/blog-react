@@ -20,8 +20,8 @@ export const Dashboard = () => {
     try {
       const response = await axios.get('/user');
 
-      const users = get(response, 'data.body.users.data', []);
-      const maxPage = get(response, 'data.body.maxPage', 1);
+      const users = get(response, 'data.body.data.data', []);
+      const maxPage = get(response, 'data.body.data.maxPage', 1);
 
       setUsersTotal(users.length * maxPage);
     } catch (error) {
@@ -33,8 +33,8 @@ export const Dashboard = () => {
     try {
       const response = await axios.get('/category');
 
-      const categories = get(response, 'data.body.data', []);
-      const maxPage = get(response, 'data.body.maxPage', 1);
+      const categories = get(response, 'data.body.data.data', []);
+      const maxPage = get(response, 'data.body.data.maxPage', 1);
 
       setCategoriesTotal(categories.length * maxPage);
     } catch (error) {
@@ -46,8 +46,8 @@ export const Dashboard = () => {
     try {
       const response = await axios.get('/article');
 
-      const articles = get(response, 'data.body.articles.data', []);
-      const maxPage = get(response, 'data.body.articles.maxPage', 1);
+      const articles = get(response, 'data.body.data.data', []);
+      const maxPage = get(response, 'data.body.data.maxPage', 1);
 
       setArticlesTotal(articles.length * maxPage);
     } catch (error) {

@@ -20,13 +20,13 @@ export const DeleteArticle = (props) => {
   const getArticle = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/user/me/article/${articleSlug}`);
+      const response = await axios.get(`/article/${articleSlug}`);
 
-      const articleStored = get(response, 'data.body.article', null);
+      const articleStored = get(response, 'data.body.data', null);
 
       setArticle(articleStored);
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {

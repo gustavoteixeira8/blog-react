@@ -1,4 +1,4 @@
 export const appConfig = {
-  apiUrl: 'https://api.gustavo.gq',
-  appUrl: `https://${window.location.host}`,
+  apiUrl: 'http://localhost:3000',
+  appUrl: `http://${window.location.host}`,
 };

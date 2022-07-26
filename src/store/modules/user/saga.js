@@ -11,12 +11,13 @@ export const fetchUserLoggedInRequest = function* () {
   try {
     const response = yield call(axios.get, '/user/me');
 
-    const userData = get(response, 'data.body.user');
+    const userData = get(response, 'data.body.data');
 
     yield put(userActions.createFetchUserLoggedInSuccess({ data: userData }));
   } catch (error) {
+    console.log(error);
     const status = get(error, 'response.data.status', 500);
-    const errors = get(error, 'response.data.body.errors', []);
+    const errors = get(error, 'response.data.body.message', []);
 
     if (status >= 400 && status <= 499) {
       errors.map((e, index) => toast.error(e, { toastId: index }));
@@ -38,7 +39,7 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
 
     toast.success(message);
   } catch (error) {
-    const errors = get(error, 'response.data.body.errors', []);
+    const errors = get(error, 'response.data.body.message', []);
     const status = get(error, 'response.data.status', 500);
 
     if (status >= 400 && status <= 499) {

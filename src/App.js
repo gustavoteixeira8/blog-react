@@ -11,11 +11,11 @@ import { store, persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Footer } from './components/Footer';
 import { HelmetProvider } from 'react-helmet-async';
-import { googleAnalyticsSetup, pageRoutesTracking } from './config/googleAnalytics';
+// import { googleAnalyticsSetup, pageRoutesTracking } from './config/googleAnalytics';
 
 const App = function () {
-  googleAnalyticsSetup();
-  pageRoutesTracking();
+  // googleAnalyticsSetup();
+  // pageRoutesTracking();
 
   return (
     <HelmetProvider>

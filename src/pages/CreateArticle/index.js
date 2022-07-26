@@ -44,7 +44,7 @@ export const CreateArticle = () => {
         setIsLoading(true);
         const response = await axios.get('/category', { params: { page, perPage, order } });
 
-        const categoriesStored = get(response, 'data.body.data', []);
+        const categoriesStored = get(response, 'data.body.data.data', []);
 
         const slicedCategories = categories.slice(start, end);
 
@@ -114,8 +114,8 @@ export const CreateArticle = () => {
 
   const submitThumbnail = async () => {
     try {
-      const articleCreated = await axios.get(`/user/me/article/${possibleSlug}`);
-      const articleId = get(articleCreated, 'data.body.article.id');
+      const articleCreated = await axios.get(`/article/${possibleSlug}`);
+      const articleId = get(articleCreated, 'data.body.data.id');
 
       const thumbnailForm = new FormData();
       thumbnailForm.append('articleThumbnail', thumbnailFile);
@@ -128,7 +128,7 @@ export const CreateArticle = () => {
 
       toast.success('Thumbnail created successfully');
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
@@ -165,13 +165,9 @@ export const CreateArticle = () => {
         categoriesId,
       });
 
-      const createArticleMessage = get(
-        response,
-        'data.body.message',
+      const createArticleMessage = get(response, 'data.body.message', [
         'Article created successfully',
-      );
-
-      if (thumbnailFile) await submitThumbnail();
+      ]);
 
       setTitle('');
       setPossibleSlug('');
@@ -181,8 +177,10 @@ export const CreateArticle = () => {
       setThumbnailURL('');
       setThumbnailFile();
 
-      toast.success(createArticleMessage);
+      toast.success(createArticleMessage[0]);
       setIsLoading(false);
+
+      if (thumbnailFile) await submitThumbnail();
     } catch (error) {
       const errors = get(error, 'response.data.body.errors', []);
       const status = get(error, 'response.data.status', 500);

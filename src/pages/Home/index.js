@@ -39,7 +39,7 @@ export const Home = () => {
       setIsLoading(true);
       const response = await axios.get('/category', { params: { page: categoriesPage, perPage } });
 
-      const categoriesStored = get(response, 'data.body.data', []);
+      const categoriesStored = get(response, 'data.body.data.data', []);
 
       const slicedCategories = categories.slice(0, perPage * categoriesPage);
 
@@ -68,12 +68,18 @@ export const Home = () => {
   const getArticles = useCallback(async () => {
     try {
       setIsLoading(true);
-
+      console.log(axios.defaults.headers.common);
       const response = await axios.get('/article', {
-        params: { perPage, page: articlesPage, ...(categoryName ? { categoryName } : null) },
+        params: {
+          isPublic: true,
+          isDeleted: false,
+          perPage,
+          page: articlesPage,
+          ...(categoryName ? { categoryName } : null),
+        },
       });
 
-      const articlesStored = get(response, 'data.body.articles.data', []);
+      const articlesStored = get(response, 'data.body.data.data', []);
 
       const slicedArticles = articles.slice(0, perPage * articlesPage);
 
@@ -116,7 +122,7 @@ export const Home = () => {
     try {
       const response = await axios.get(`/category/${categorySlugFormURL}`);
 
-      const categoryName = get(response, 'data.body.category.name');
+      const categoryName = get(response, 'data.body.data.category.name');
 
       setCategoryName(categoryName);
     } catch (error) {

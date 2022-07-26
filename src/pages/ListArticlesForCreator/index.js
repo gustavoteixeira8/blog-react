@@ -37,11 +37,11 @@ export const ListArticlesForCreator = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get('/user/me/article', {
+      const response = await axios.get('/article', {
         params: { perPage, order, isPublic, categoryName, articleTitle, isDeleted },
       });
 
-      const articlesStored = get(response, 'data.body.articles.data', []);
+      const articlesStored = get(response, 'data.body.data.data', []);
 
       setArticles(articlesStored);
     } catch (error) {
@@ -70,11 +70,11 @@ export const ListArticlesForCreator = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get('/user/me/article', {
+      const response = await axios.get('/article', {
         params: { perPage, order, page, isPublic, categoryName, articleTitle, isDeleted },
       });
 
-      const articlesStored = get(response, 'data.body.articles.data', []);
+      const articlesStored = get(response, 'data.body.data.data', []);
 
       const slicedArticles = articles.slice(start, end);
 

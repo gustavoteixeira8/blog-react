@@ -23,7 +23,7 @@ export const AddOrRemovePermission = (props) => {
 
       const response = await axios.get(`/user/${username}`);
 
-      const userStored = get(response, 'data.body.user', {});
+      const userStored = get(response, 'data.body.data', {});
 
       setUser(userStored);
       setIsLoading(false);
@@ -53,14 +53,14 @@ export const AddOrRemovePermission = (props) => {
         response = await axios.put('/user/admin/remove', { userId: user.id });
       }
 
-      const message = get(response, 'data.body.message', '');
+      const message = get(response, 'data.body.message', ['']);
 
-      toast.success(message);
+      toast.success(message[0]);
 
       browserHistory.push('/account/all');
     } catch (error) {
       const status = get(error, 'response.data.status', 500);
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
 
       if (status >= 400 && status <= 499) {
         errors.map((e, index) => toast.error(e, { toastId: index }));

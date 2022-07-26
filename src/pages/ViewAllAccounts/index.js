@@ -30,11 +30,16 @@ export const ViewAllAccounts = () => {
         params: { perPage, order, username, isAdmin },
       });
 
-      const usersStored = get(response, 'data.body.users.data', []);
+      const usersStored = get(response, 'data.body.data.data', []);
 
       setUsers(usersStored);
     } catch (error) {
-      toast.error('Internal error, try again later');
+      const errorMessage = get(
+        error,
+        'response.data.body.message',
+        'Internal error, try again later',
+      );
+      toast.error(errorMessage[0]);
     } finally {
       setIsLoading(false);
       setPage(2);
@@ -62,7 +67,7 @@ export const ViewAllAccounts = () => {
         params: { perPage, order, page, username, isAdmin },
       });
 
-      const usersStored = get(response, 'data.body.users.data', []);
+      const usersStored = get(response, 'data.body.data.data', []);
 
       const slicedUsers = users.slice(start, end);
 
@@ -72,7 +77,12 @@ export const ViewAllAccounts = () => {
       setPage(page + 1);
       setNext(next + perPage);
     } catch (error) {
-      toast.error('Internal error, try again later');
+      const errorMessage = get(
+        error,
+        'response.data.body.message',
+        'Internal error, try again later',
+      );
+      toast.error(errorMessage[0]);
     } finally {
       setIsLoading(false);
     }

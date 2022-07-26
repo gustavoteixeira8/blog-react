@@ -9,15 +9,17 @@ import { browserHistory } from '../../../services/browserHistory';
 
 const loginRequest = function* ({ payload }) {
   try {
-    const response = yield call(axios.post, '/auth', {
+    const response = yield call(axios.post, '/auth/login', {
       login: payload.login,
       password: payload.password,
     });
 
-    axios.defaults.headers.common['authorization'] = `Bearer ${response.data.body.accessToken}`;
+    axios.defaults.headers.common[
+      'authorization'
+    ] = `Bearer ${response.data.body.data.accessToken}`;
 
     yield put(userActions.createFetchUserLoggedInRequest());
-    yield put(authActions.createLoginSuccess({ ...response.data.body }));
+    yield put(authActions.createLoginSuccess({ ...response.data.body.data }));
 
     const message = get(response, 'data.body.message', 'You have logged in');
 
@@ -39,9 +41,10 @@ const loginRequest = function* ({ payload }) {
 };
 
 export const logoutRequest = function* () {
-  delete axios.defaults.headers.common['authorization'];
+  yield call(axios.post, '/auth/logout');
   yield put(authActions.createLoginError());
   yield put(userActions.createFetchUserLoggedInError());
+  delete axios.defaults.headers.common['authorization'];
 };
 
 const persistAccessToken = ({ payload }) => {
