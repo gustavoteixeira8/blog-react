@@ -30,6 +30,16 @@ export const Form = styled.form`
     background-color: white;
   }
 
+  input[type='color'] {
+    padding: 5px;
+    margin-top: 6px;
+    border-radius: 3px;
+    border: 1px solid ${primaryDarkColor};
+    height: 40px;
+    font-size: 17px;
+    background-color: white;
+  }
+
   button {
     padding: 10px 80px;
   }
@@ -37,6 +47,7 @@ export const Form = styled.form`
   input[type='text']:focus,
   input[type='email']:focus,
   input[type='password']:focus,
+  input[type='color'],
   select:focus {
     box-shadow: 0px 0px 7px 0px ${primaryDarkColor};
   }

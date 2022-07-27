@@ -12,10 +12,16 @@ import * as userActions from '../../store/modules/user/actions';
 import { validateEmail, validateFullName, validateUsername } from '../../validations/index';
 import { toast } from 'react-toastify';
 import { HelmetTags } from '../../components/Helmet';
+import {
+  getUserColorLocalStorage,
+  restoreUserColorLocalStorage,
+  setUserColorLocalStorage,
+} from '../../utils/userColorPreference';
 
 export const UserAccount = () => {
   const { data } = useSelector((state) => state.user);
   const [fullName, setFullName] = useState('');
+  const [userColor, setUserColor] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
@@ -56,6 +62,18 @@ export const UserAccount = () => {
     }
 
     dispatch(userActions.createUpdateUserLoggedInRequest({ user }));
+
+    const currentColor = getUserColorLocalStorage();
+
+    if (currentColor !== userColor) {
+      setUserColorLocalStorage(userColor);
+      toast.success('Reload page to change color');
+    }
+  };
+
+  const handleRestoreColorClick = () => {
+    restoreUserColorLocalStorage();
+    window.location.reload();
   };
 
   return (
@@ -120,6 +138,19 @@ export const UserAccount = () => {
               disabled
               value={isAdmin ? 'YES' : 'NO'}
             />
+          </label>
+
+          <label htmlFor="email">
+            Choose the primary color
+            <input
+              type="color"
+              style={{ width: '100%' }}
+              defaultValue={getUserColorLocalStorage()}
+              onChange={(e) => setUserColor(e.target.value)}
+            />
+            <small>
+              <Link onClick={handleRestoreColorClick}>Restore color</Link>
+            </small>
           </label>
 
           <label htmlFor="lastUpdate">

@@ -15,7 +15,6 @@ export const fetchUserLoggedInRequest = function* () {
 
     yield put(userActions.createFetchUserLoggedInSuccess({ data: userData }));
   } catch (error) {
-    console.log(error);
     const status = get(error, 'response.data.status', 500);
     const errors = get(error, 'response.data.body.message', []);
 
@@ -35,9 +34,9 @@ export const updateUserLoggedInRequest = function* ({ payload }) {
 
     yield put(userActions.createFetchUserLoggedInRequest());
 
-    const message = get(response, 'data.body.message', 'Your user was updated successfully');
+    const message = get(response, 'data.body.message', ['Your user was updated successfully']);
 
-    toast.success(message);
+    toast.success(message[0]);
   } catch (error) {
     const errors = get(error, 'response.data.body.message', []);
     const status = get(error, 'response.data.status', 500);
@@ -56,9 +55,9 @@ export const deleteUserLoggedInRequest = function* () {
   try {
     const response = yield call(axios.delete, '/user');
 
-    const message = get(response, 'data.body.message', 'Your user was deleted successfully');
+    const message = get(response, 'data.body.message', ['Your user was deleted successfully']);
 
-    toast.success(message);
+    toast.success(message[0]);
 
     yield put(authActions.createLogoutRequest());
 
