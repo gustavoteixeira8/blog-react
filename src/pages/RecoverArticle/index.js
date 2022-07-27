@@ -89,7 +89,11 @@ export const RecoverArticle = (props) => {
               {article.thumbnail ? <img src={article.thumbnail} /> : <p>No image found</p>}
             </CardImageContainer>
 
-            <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
+            <CardTitle style={{ fontSize: '25px', textDecoration: 'underline' }}>
+              <a href={`/article/${article.slug}`} rel="noreferrer" title="Click to read">
+                {article.title}
+              </a>
+            </CardTitle>
 
             <small style={{ textAlign: 'center', display: 'block' }}>{article.slug}</small>
 

@@ -181,12 +181,7 @@ export const ListArticlesForCreator = () => {
                   </CardImageContainer>
 
                   <CardTitle style={{ fontSize: '25px', textDecoration: 'underline' }}>
-                    <a
-                      href={`/article/${article.slug}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Click to read"
-                    >
+                    <a href={`/article/${article.slug}`} rel="noreferrer" title="Click to read">
                       {article.title}
                     </a>
                   </CardTitle>

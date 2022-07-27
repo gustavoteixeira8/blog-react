@@ -109,6 +109,15 @@ export const Article = (props) => {
             {article.title}
           </Title>
           <ArticleDetails>
+            {article.deletedAt ? (
+              <>
+                <p>Deleted {formatDistanceDate(new Date(article.deletedAt))}</p>
+                <br />
+              </>
+            ) : (
+              ''
+            )}
+
             <p>Posted {formatDistanceDate(new Date(article.createdAt))}</p>
             <p>
               {article.categories.map((category, i) => {
