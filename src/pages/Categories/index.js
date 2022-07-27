@@ -42,15 +42,14 @@ export const Categories = () => {
     [setIsLoading, categories, next, order, page, perPage],
   );
 
-  const handleClick = async (e) => {
-    await getCategories(0, next);
-
+  const handleClick = async () => {
     const math = perPage * page - perPage;
 
     if (categories.length < math) {
-      e.target.style.display = 'none';
       return;
     }
+
+    await getCategories(0, next);
   };
 
   useEffect(() => {

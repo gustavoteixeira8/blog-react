@@ -54,21 +54,18 @@ export const Home = () => {
     }
   }, [setIsLoading, categories, categoriesPage, perPage]);
 
-  const handleClickLoadMoreCategories = async (e) => {
-    await getCategories();
-
+  const handleClickLoadMoreCategories = async () => {
     const math = perPage * categoriesPage - perPage;
 
     if (categories.length < math) {
-      e.target.style.display = 'none';
       return;
     }
+    await getCategories();
   };
 
   const getArticles = useCallback(async () => {
     try {
       setIsLoading(true);
-      console.log(axios.defaults.headers.common);
       const response = await axios.get('/article', {
         params: {
           isPublic: true,
@@ -122,7 +119,7 @@ export const Home = () => {
     try {
       const response = await axios.get(`/category/${categorySlugFormURL}`);
 
-      const categoryName = get(response, 'data.body.data.category.name');
+      const categoryName = get(response, 'data.body.data.name');
 
       setCategoryName(categoryName);
     } catch (error) {
@@ -215,7 +212,7 @@ export const Home = () => {
             )}
           </CardsContainer>
 
-          <Button big onClick={handleClickLoadMoreArticles}>
+          <Button medium onClick={handleClickLoadMoreArticles} style={{ width: '100%' }}>
             Load more
           </Button>
         </Container>

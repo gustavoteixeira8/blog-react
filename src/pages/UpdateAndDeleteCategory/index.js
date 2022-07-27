@@ -57,9 +57,10 @@ export const UpdateAndDeleteCategory = (props) => {
     try {
       setIsLoading(true);
       const response = await axios.put(`/category/${categoryId}`, { name: categoryName });
-      const message = get(response, 'data.body.message', 'Category was successfully updated');
+      const message = get(response, 'data.body.message', ['Category was successfully updated']);
 
-      toast.success(message);
+      toast.success(message[0]);
+      setIsLoading(false);
       browserHistory.push(`/category/update/${possibleSlug}`);
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
@@ -70,7 +71,6 @@ export const UpdateAndDeleteCategory = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   };
@@ -79,10 +79,11 @@ export const UpdateAndDeleteCategory = (props) => {
     try {
       setIsLoading(true);
       const response = await axios.delete(`/category/${categoryId}`);
-      const message = get(response, 'data.body.message', 'Category was successfully deleted');
+      const message = get(response, 'data.body.message', ['Category was successfully deleted']);
 
-      toast.success(message);
+      toast.success(message[0]);
 
+      setIsLoading(false);
       browserHistory.push('/category');
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
@@ -93,7 +94,6 @@ export const UpdateAndDeleteCategory = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   };

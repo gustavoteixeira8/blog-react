@@ -45,23 +45,22 @@ export const Register = () => {
 
       const { data } = await axios.post('/user', user);
 
-      toast.success(data.body.message);
+      toast.success(data.body.message[0]);
 
       setFullName('');
       setEmail('');
       setUsername('');
       setPassword('');
+      setIsLoading(false);
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {
         errors.map((error) => toast.error(error, { toastId: Math.random() }));
-        return;
+      } else {
+        toast.error('Internal error, try again later');
       }
-
-      toast.error('Internal error, try again later');
-    } finally {
       setIsLoading(false);
     }
   };

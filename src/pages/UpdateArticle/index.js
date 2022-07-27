@@ -95,15 +95,13 @@ export const UpdateArticle = (props) => {
     }
   }, [setIsLoading, articleSlug]);
 
-  const handleClick = async (e) => {
-    await getCategories(0, next);
-
+  const handleClick = async () => {
     const math = perPage * page - perPage;
 
     if (categories.length < math) {
-      e.target.style.display = 'none';
       return;
     }
+    await getCategories(0, next);
   };
 
   useEffect(() => {
@@ -137,10 +135,10 @@ export const UpdateArticle = (props) => {
       return;
     }
 
-    // if (choosedCategories.length > 4) {
-    //   toast.error('Maximum of categories are 5');
-    //   return;
-    // }
+    if (choosedCategories.length > 4) {
+      toast.error('Maximum of categories are 5');
+      return;
+    }
 
     const newCategories = [...choosedCategories];
     newCategories.push({ categoryName, categoryId });
@@ -211,6 +209,7 @@ export const UpdateArticle = (props) => {
       if (article.thumbnail !== thumbnailURL) await submitThumbnail();
 
       toast.success(message[0]);
+      setIsLoading(false);
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
@@ -220,7 +219,6 @@ export const UpdateArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   };

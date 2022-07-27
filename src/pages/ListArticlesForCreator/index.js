@@ -20,12 +20,12 @@ import { HelmetTags } from '../../components/Helmet';
 
 export const ListArticlesForCreator = () => {
   const [articles, setArticles] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState('createdAt');
   const [next, setNext] = useState(20);
   const perPage = 20;
-  const buttonLoadMore = document.querySelector('.loadMoreButton');
 
   // Search params
   const [articleTitle, setArticleTitle] = useState('');
@@ -57,10 +57,23 @@ export const ListArticlesForCreator = () => {
     e.preventDefault();
 
     await searchArticles();
-    buttonLoadMore.style.display = 'block';
+  };
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get('/category', { params: { page: 1, perPage: 1000 } });
+
+      const categoriesStored = get(response, 'data.body.data.data', []);
+
+      setCategories(categoriesStored);
+    } catch (error) {
+      toast.error('Internal error, try again later');
+    }
   };
 
   useEffect(() => {
+    getCategories();
+
     if (articles.length === 0 && page === 1) {
       searchArticles();
     }
@@ -83,22 +96,10 @@ export const ListArticlesForCreator = () => {
       setArticles(articlesUpdated);
       setPage(page + 1);
       setNext(next + perPage);
+      setIsLoading(false);
     } catch (error) {
       toast.error('Internal error, try again later');
-    } finally {
-      setIsLoading(false);
     }
-  };
-
-  const handleClick = async () => {
-    const math = perPage * page - perPage;
-
-    if (articles.length < math) {
-      buttonLoadMore.style.display = 'none';
-      return;
-    }
-
-    await loadMoreArticles();
   };
 
   return (
@@ -122,30 +123,40 @@ export const ListArticlesForCreator = () => {
 
           <label htmlFor="categoryName">
             Category name
-            <input
+            <select name="categoryName" onChange={(e) => setCategoryName(e.target.value)}>
+              <option value={''}>Default</option>
+              {categories.map((category) => {
+                return (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+            {/* <input
               name="categoryName"
               placeholder="Category name"
               type="text"
               onChange={(e) => setCategoryName(e.target.value)}
               value={categoryName}
-            />
+            /> */}
           </label>
 
           <label htmlFor="isPublic">
             Is public
             <select name="isPublic" onChange={(e) => setIsPublic(e.target.value)}>
-              <option value={undefined}>DEFAULT</option>
-              <option value={0}>NO</option>
-              <option value={1}>YES</option>
+              <option value={undefined}>Default</option>
+              <option value={0}>No</option>
+              <option value={1}>Yes</option>
             </select>
           </label>
 
           <label htmlFor="isDeleted">
             Is deleted
             <select name="isDeleted" onChange={(e) => setIsDeleted(e.target.value)}>
-              <option value={undefined}>DEFAULT</option>
-              <option value={0}>NO</option>
-              <option value={1}>YES</option>
+              <option value={undefined}>Default</option>
+              <option value={0}>No</option>
+              <option value={1}>Yes</option>
             </select>
           </label>
 
@@ -169,7 +180,16 @@ export const ListArticlesForCreator = () => {
                     {article.thumbnail ? <img src={article.thumbnail} alt={article.title} /> : null}
                   </CardImageContainer>
 
-                  <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
+                  <CardTitle style={{ fontSize: '25px', textDecoration: 'underline' }}>
+                    <a
+                      href={`/article/${article.slug}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Click to read"
+                    >
+                      {article.title}
+                    </a>
+                  </CardTitle>
 
                   <small style={{ textAlign: 'center', display: 'block' }}>{article.slug}</small>
 
@@ -227,7 +247,7 @@ export const ListArticlesForCreator = () => {
           )}
         </CardsContainer>
 
-        <Button className="loadMoreButton" big onClick={handleClick}>
+        <Button className="loadMoreButton" big onClick={loadMoreArticles}>
           Load more
         </Button>
       </Container>

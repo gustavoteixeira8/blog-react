@@ -28,12 +28,13 @@ export const CreateCategory = () => {
     try {
       setIsLoading(true);
       const response = await axios.post('/category', { name: categoryName });
-      const message = get(response, 'data.body.message', 'Category was successfully created');
+      const message = get(response, 'data.body.message', ['Category was successfully created']);
 
-      toast.success(message);
+      toast.success(message[0]);
 
       setCategoryName('');
       setPossibleSlug('');
+      setIsLoading(false);
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
@@ -43,7 +44,6 @@ export const CreateCategory = () => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   };

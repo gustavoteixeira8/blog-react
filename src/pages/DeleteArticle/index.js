@@ -25,6 +25,7 @@ export const DeleteArticle = (props) => {
       const articleStored = get(response, 'data.body.data', null);
 
       setArticle(articleStored);
+      setIsLoading(false);
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
@@ -35,7 +36,6 @@ export const DeleteArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   }, [setIsLoading, articleSlug]);
@@ -49,9 +49,11 @@ export const DeleteArticle = (props) => {
       setIsLoading(true);
       const response = await axios.delete(`/article/${article.id}`);
 
-      const message = get(response, 'data.body.message', 'Your article will be deleted in 1 month');
+      const message = get(response, 'data.body.message', [
+        'Your article will be deleted in 1 month',
+      ]);
 
-      toast.success(message);
+      toast.success(message[0]);
       browserHistory.push('/my/article');
     } catch (error) {
       const errors = get(error, 'response.data.body.errors', []);
@@ -85,7 +87,16 @@ export const DeleteArticle = (props) => {
               {article.thumbnail ? <img src={article.thumbnail} /> : <p>No image found</p>}
             </CardImageContainer>
 
-            <CardTitle style={{ fontSize: '25px' }}>{article.title}</CardTitle>
+            <CardTitle style={{ fontSize: '25px', textDecoration: 'underline' }}>
+              <a
+                href={`/article/${article.slug}`}
+                target="_blank"
+                rel="noreferrer"
+                title="Click to read"
+              >
+                {article.title}
+              </a>
+            </CardTitle>
 
             <small style={{ textAlign: 'center', display: 'block' }}>{article.slug}</small>
 

@@ -25,6 +25,7 @@ export const RecoverArticle = (props) => {
       const articleStored = get(response, 'data.body.data', null);
 
       setArticle(articleStored);
+      setIsLoading(false);
     } catch (error) {
       const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
@@ -35,7 +36,6 @@ export const RecoverArticle = (props) => {
       } else {
         toast.error('Internal error, try again later');
       }
-    } finally {
       setIsLoading(false);
     }
   }, [setIsLoading, articleSlug]);

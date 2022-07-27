@@ -21,9 +21,9 @@ const loginRequest = function* ({ payload }) {
     yield put(userActions.createFetchUserLoggedInRequest());
     yield put(authActions.createLoginSuccess({ ...response.data.body.data }));
 
-    const message = get(response, 'data.body.message', 'You have logged in');
+    const message = get(response, 'data.body.message', []);
 
-    toast.success(message);
+    toast.success(message[0]);
 
     browserHistory.push(payload.prevPath);
   } catch (error) {

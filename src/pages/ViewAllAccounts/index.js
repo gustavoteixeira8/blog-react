@@ -83,8 +83,6 @@ export const ViewAllAccounts = () => {
         'Internal error, try again later',
       );
       toast.error(errorMessage[0]);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -118,9 +116,9 @@ export const ViewAllAccounts = () => {
           <label htmlFor="fullName">
             Is admin
             <select name="isAdmin" onChange={(e) => setIsAdmin(e.target.value)}>
-              <option value={undefined}>DEFAULT</option>
-              <option value={false}>NO</option>
-              <option value={true}>YES</option>
+              <option value={undefined}>Default</option>
+              <option value={false}>No</option>
+              <option value={true}>Yes</option>
             </select>
           </label>
 
