@@ -122,6 +122,14 @@ export const Dashboard = () => {
               <Button type="button">Register a new user</Button>
             </Link>
           </UtilityLinks>
+
+          <UtilityLinks>
+            <Title style={{ fontSize: '40px' }}>Account</Title>
+
+            <Link to="/account" className="utility-link">
+              <Button type="button">Edit account</Button>
+            </Link>
+          </UtilityLinks>
         </ContainerUtilityLinks>
       </Container>
     </>

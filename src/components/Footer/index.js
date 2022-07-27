@@ -1,6 +1,6 @@
 import React from 'react';
 import { FooterContainer } from './styled';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -15,6 +15,14 @@ export const Footer = () => {
           target="_blank"
         >
           <FaGithub />
+        </Link>
+
+        <Link
+          className="footer-links linkedin-icon"
+          to={{ pathname: 'https://www.linkedin.com/in/gustavoteixeira8/' }}
+          target="_blank"
+        >
+          <FaLinkedin />
         </Link>
 
         <Link

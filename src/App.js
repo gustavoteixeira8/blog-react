@@ -28,7 +28,7 @@ const App = function () {
               <GlobalStyles />
               <AppRoutes />
               <ToastContainer
-                autoClose={5000}
+                autoClose={4000}
                 className="toast-container"
                 pauseOnFocusLoss={true}
                 theme="dark"

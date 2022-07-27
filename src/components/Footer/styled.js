@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { primaryBlueColor, primaryColor, primaryDarkColor } from '../../config/colors';
+import {
+  primaryBlueColor,
+  primaryColor,
+  primaryDarkColor,
+  secondaryBlueColor,
+} from '../../config/colors';
 
 export const FooterContainer = styled.footer`
   background-color: ${primaryColor};
@@ -34,5 +39,9 @@ export const FooterContainer = styled.footer`
 
   .twitter-icon:hover {
     color: ${primaryBlueColor};
+  }
+
+  .linkedin-icon:hover {
+    color: ${secondaryBlueColor};
   }
 `;
