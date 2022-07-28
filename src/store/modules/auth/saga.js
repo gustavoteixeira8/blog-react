@@ -28,7 +28,7 @@ const loginRequest = function* ({ payload }) {
     browserHistory.push(payload.prevPath);
   } catch (error) {
     const status = get(error, 'response.data.status', 500);
-    const errors = get(error, 'response.data.body.errors', []);
+    const errors = get(error, 'response.data.body.message', []);
 
     if (status === 401 || status === 400) {
       errors.map((e, index) => toast.error(e, { toastId: index }));
