@@ -66,7 +66,7 @@ export const EmailVerification = () => {
         dispatch(userActions.createFetchUserLoggedInRequest());
       }
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', ['Internal error, try again later']);
+      const errors = get(error, 'response.data.body.message', ['Internal error, try again later']);
       errors.map((err) => toast.error(err, { toastId: Math.random() }));
       setIsLoading(false);
       setToken('');
