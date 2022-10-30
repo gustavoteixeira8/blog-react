@@ -37,7 +37,7 @@ export const ListArticlesForCreator = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get('/article', {
+      const response = await axios.get('/article/my/articles', {
         params: { perPage, order, isPublic, categoryName, articleTitle, isDeleted },
       });
 
@@ -83,7 +83,7 @@ export const ListArticlesForCreator = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get('/article', {
+      const response = await axios.get('/article/my/articles', {
         params: { perPage, order, page, isPublic, categoryName, articleTitle, isDeleted },
       });
 

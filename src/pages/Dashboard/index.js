@@ -44,7 +44,7 @@ export const Dashboard = () => {
 
   const getArticles = async () => {
     try {
-      const response = await axios.get('/article');
+      const response = await axios.get('/article/my/articles');
 
       const articles = get(response, 'data.body.data.data', []);
       const maxPage = get(response, 'data.body.data.maxPage', 1);

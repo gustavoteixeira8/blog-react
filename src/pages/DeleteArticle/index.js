@@ -56,7 +56,7 @@ export const DeleteArticle = (props) => {
       toast.success(message[0]);
       browserHistory.push('/my/article');
     } catch (error) {
-      const errors = get(error, 'response.data.body.errors', []);
+      const errors = get(error, 'response.data.body.message', []);
       const status = get(error, 'response.data.status', 500);
 
       if (status >= 400 && status <= 499) {

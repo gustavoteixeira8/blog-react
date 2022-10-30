@@ -1,7 +1,7 @@
 import { getUserColorLocalStorage } from '../utils/userColorPreference';
 
 export const primaryDarkColor = '#2b2a2b';
-export let primaryColor = getUserColorLocalStorage() || '#c3073f';
+export let primaryColor = getUserColorLocalStorage() || 'black';
 export const primaryModalBackgroundColor = 'black';
 
 export const primaryGreenColor = '#4BB543';

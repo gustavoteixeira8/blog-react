@@ -3,7 +3,7 @@ export const setUserColorLocalStorage = (color) => {
 };
 
 export const getUserColorLocalStorage = () => {
-  return localStorage.getItem('USER_COLOR') || '#c3073f';
+  return localStorage.getItem('USER_COLOR');
 };
 
 export const restoreUserColorLocalStorage = () => {
