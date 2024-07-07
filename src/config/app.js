@@ -1,4 +1,4 @@
 export const appConfig = {
-  apiUrl: 'https://api-blog.gustavo.gq/',
+  apiUrl: 'https://blog-api.gustavoteixeira.xyz',
   appUrl: `http://${window.location.host}`,
 };

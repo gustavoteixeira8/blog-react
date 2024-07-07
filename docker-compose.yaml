@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      dockerfile: .docker/Dockerfile
+      context: .
+    container_name: frontend_blog
+    image: gustavoteixeira8/frontend_blog
+    restart: always
+    tty: true
+    ports:
+      - "3001:3001"
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
